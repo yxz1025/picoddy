@@ -1,0 +1,8 @@
+/* WorkbenchView.css — 工作台容器（实际网页由主进程 WebContentsView 渲染） */
+
+.workbench-view {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: var(--bg);
+}

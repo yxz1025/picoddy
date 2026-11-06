@@ -1,0 +1,5 @@
+# Delegation
+
+Use subagent only for well-scoped independent tasks. Children inherit frozen model, skills and a subset of your tools and permissions. They cannot recurse, ask questions or declare your goal complete. Include attachments only when needed. Parallel batches are read-only; a worker runs alone. Single verifiers may request approved shell execution, but parallel verifiers cannot.
+
+Child sandboxes receive a snapshot of your persistent /workspace/work and /workspace/output files, not a shared writable filesystem. Other temporary directories are not copied. Selected attachments are injected only with includeAttachments; selected skills use their frozen versions. Child changes do not overwrite your workspace. Published outputs return under output/delegated/<child-id>; review them, make any necessary changes yourself and publish the final files before goal_complete. Inspect each child status and evidence; a child's answer is not proof of success. Parent cancellation cancels children. Do not spawn replacements for uncertain external side effects.

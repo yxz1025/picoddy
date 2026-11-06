@@ -1,0 +1,16 @@
+import { defineConfig } from '@playwright/test';
+
+// Merge into the target repository's existing config; retain its auth/data fixtures.
+export default defineConfig({
+  testDir: './tests/e2e',
+  timeout: 30_000,
+  forbidOnly: !!process.env.CI,
+  retries: 0,
+  workers: 1,
+  use: {
+    baseURL: process.env.BASE_URL,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'off',
+  },
+});

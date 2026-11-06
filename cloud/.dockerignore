@@ -1,0 +1,14 @@
+node_modules
+web/dist
+.env
+.env
+**/.env*
+**/*.pem
+**/*.key
+coverage
+artifacts
+data
+deploy/secrets
+**/*.enc
+*.log
+.git

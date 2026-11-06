@@ -1,0 +1,9 @@
+.update-panel { text-align: left; padding: 20px; border: 1px solid var(--border, #ddd); border-radius: 12px; margin: 18px 0; }
+.update-heading { display: flex; justify-content: space-between; gap: 16px; }
+.update-panel p { line-height: 1.6; font-size: 13px; }
+.update-panel progress { width: 100%; margin: 14px 0 6px; accent-color: var(--accent, #387d57); }
+.update-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.update-actions button { padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border, #ccc); background: var(--bg, transparent); color: inherit; cursor: pointer; }
+.update-actions button:hover { opacity: .75; }
+.update-notes { white-space: pre-wrap; overflow-wrap: anywhere; }
+.update-error { color: #c24637; }

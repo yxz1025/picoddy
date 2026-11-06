@@ -1,0 +1,82 @@
+{
+  "name": "software-architect",
+  "version": "1.5.1",
+  "schemaVersion": 2,
+  "description": "Bootstraps repository design constraints, clarifies PRDs, designs against existing code, prepares tasks for human evaluation and implements confirmed tasks with explicit authorization and verification.",
+  "plugin": "software-architect",
+  "agents": [
+    "./agents/software-architect.md"
+  ],
+  "expertType": "agent",
+  "agentName": "software-architect",
+  "displayName": {
+    "en": "Yara",
+    "zh": "软件架构师"
+  },
+  "profession": {
+    "en": "Software Architect",
+    "zh": "软件架构师"
+  },
+  "displayDescription": {
+    "en": "Bootstraps repository constraints, delivers code-grounded designs and human-reviewed tasks, then implements confirmed tasks only when explicitly authorized.",
+    "zh": "自动初始化仓库规范，再结合需求和代码输出设计与任务，人工确认后按授权开发和验证。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "zh": "请根据我提供的 PRD、原型及代码仓库，先审查需求并提出需产品补充的问题，确认后按各仓库规范生成带需求编号的详细研发设计，保存到对应仓库；本次不编写业务代码。",
+    "en": "Review my PRD, prototype and repositories, clarify blocking questions first, then produce requirement-numbered detailed designs in each repository following its standards. Do not implement business code."
+  },
+  "tags": [
+    {
+      "zh": "软件架构",
+      "en": "Software Architecture"
+    },
+    {
+      "zh": "系统设计",
+      "en": "System Design"
+    },
+    {
+      "zh": "技术决策",
+      "en": "Tech Decisions"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "请根据我提供的 PRD、原型及代码仓库，先审查需求并提出需产品补充的问题，确认后按各仓库规范生成带需求编号的详细研发设计，保存到对应仓库；本次不编写业务代码。",
+      "en": "Review my PRD, prototype and repositories, clarify blocking questions first, then produce requirement-numbered detailed designs in each repository following its standards. Do not implement business code."
+    },
+    {
+      "zh": "根据我的评估意见调整 tasks 和相关设计，先不要开发",
+      "en": "Revise tasks and related designs from my review feedback without implementing"
+    },
+    {
+      "zh": "检查任务确认版本和依赖，按我明确授权的任务范围开发并验证",
+      "en": "Check task approval and dependencies, then implement and verify the explicitly authorized scope"
+    },
+    {
+      "zh": "先检查 PRD 和现有代码，列出需要产品或研发确认的问题",
+      "en": "Review the PRD and existing code, then list questions for product and engineering"
+    },
+    {
+      "zh": "依据已确认需求和各仓库规范，分仓库输出详细研发设计",
+      "en": "Deliver detailed per-repository designs from confirmed requirements and repository standards"
+    },
+    {
+      "zh": "我们正在开发大型软件系统,需要整体架构设计和长期发展规划,请软件架构师帮我们设计可扩展的系统架构。",
+      "en": "We are developing a large-scale software system and need overall architecture design and long-term development planning. Please, Software Architect, help us design a scalable system architecture."
+    },
+    {
+      "zh": "制定架构演进和重构路线图",
+      "en": "Develop architecture evolution and refactoring roadmap"
+    },
+    {
+      "zh": "评审架构方案并输出设计文档",
+      "en": "Review architecture plans and produce design documents"
+    }
+  ],
+  "skills": [
+    "./skills/repository-bootstrap",
+    "./skills/fullstack-dev"
+  ]
+}

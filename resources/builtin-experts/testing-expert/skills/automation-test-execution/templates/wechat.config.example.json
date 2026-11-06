@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "kind": "wechat-mini",
+  "repositoryRoot": "../..",
+  "projectPath": "REPLACE_WITH_PROJECT_DIRECTORY",
+  "cliPath": "REPLACE_WITH_ABSOLUTE_DEVTOOLS_CLI_PATH",
+  "appId": "REPLACE_WITH_REAL_APPID",
+  "environment": "test",
+  "timeoutMs": 60000,
+  "cases": [
+    {
+      "id": "TC-REPLACE",
+      "title": "Replace with an actual SDD acceptance case",
+      "acceptanceIds": ["AC-REPLACE"],
+      "required": true,
+      "automation": "automated",
+      "file": "tests/automation/requirement.cases.cjs"
+    }
+  ]
+}

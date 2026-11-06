@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "connectors": [
+    {
+      "id": "dingtalk",
+      "version": "1.0.0",
+      "displayName": "钉钉",
+      "description": "管理钉钉办公能力",
+      "presentation": {
+        "icon": "/logos/dingtalk.png"
+      },
+      "delegate": {
+        "toolName": "delegate_to_dingtalk",
+        "description": "当用户需要使用钉钉办公能力时委派给钉钉连接器"
+      },
+      "runtime": {
+        "type": "managed-node-npm",
+        "profile": "default"
+      },
+      "install": {
+        "package": "dingtalk-workspace-cli",
+        "version": "1.0.59",
+        "registry": "https://registry.npmjs.org",
+        "tarball": "https://registry.npmjs.org/dingtalk-workspace-cli/-/dingtalk-workspace-cli-1.0.59.tgz",
+        "integrity": "sha512-f/dqjtpeUF9lz/uunqkgLerB1YoiXBVeM69QocjlFQeNhBYDdWI2isCRG6lzfilSVGDfm5Xp5IZvcrrsweUM3g==",
+        "postInstall": {
+          "path": "install.js",
+          "argv": []
+        }
+      },
+      "skill": {
+        "source": "package-archive",
+        "archive": "assets/dws-skills.zip",
+        "entry": "SKILL.md"
+      },
+      "executable": {
+        "darwin": "dws",
+        "linux": "dws",
+        "win32": "dws.cmd"
+      },
+      "versionCheck": {
+        "argv": ["--version"],
+        "outputPattern": "^dws version v1\\.0\\.59\\b"
+      },
+      "auth": {
+        "argv": ["auth", "login", "-y", "--no-browser"],
+        "allowedDomains": ["login.dingtalk.com"],
+        "waitForExit": true
+      },
+      "status": {
+        "argv": ["auth", "status"],
+        "format": "json",
+        "jsonMatch": {
+          "authenticated": true
+        }
+      },
+      "logout": {
+        "argv": ["auth", "reset"]
+      },
+      "commandPolicy": {
+        "schema": {
+          "argv": ["schema", "--compact", "--format", "json"]
+        }
+      },
+      "errors": {
+        "AUTH_REQUIRED": [
+          "not (?:logged in|authenticated)",
+          "authentication required",
+          "please (?:run )?dws auth login",
+          "未登录"
+        ],
+        "AUTH_FAILED": [
+          "authentication failed",
+          "login (?:failed|rejected|cancelled)",
+          "(?:invalid|expired) (?:access )?token",
+          "认证失败"
+        ],
+        "CONNECTOR_TIMEOUT": [
+          "context deadline exceeded",
+          "timed? out",
+          "timeout",
+          "超时"
+        ],
+        "NETWORK_ERROR": [
+          "network (?:error|unavailable)",
+          "(?:connection reset|connection refused|dns|econnreset|econnrefused|enotfound|tls)",
+          "网络(?:错误|不可用)"
+        ],
+        "defaultNonZeroExit": "CONNECTOR_BROKEN"
+      },
+      "packages": {
+        "dingtalk-workspace-cli@1.0.59": {
+          "resolved": "https://registry.npmjs.org/dingtalk-workspace-cli/-/dingtalk-workspace-cli-1.0.59.tgz",
+          "integrity": "sha512-f/dqjtpeUF9lz/uunqkgLerB1YoiXBVeM69QocjlFQeNhBYDdWI2isCRG6lzfilSVGDfm5Xp5IZvcrrsweUM3g=="
+        }
+      }
+    }
+  ]
+}

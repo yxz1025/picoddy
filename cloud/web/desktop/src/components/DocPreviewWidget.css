@@ -1,0 +1,67 @@
+.doc-preview-widget {
+  background: var(--bg-surface, #1e1e24);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.doc-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+.doc-preview-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main, #ececec);
+}
+
+.doc-open-btn {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.doc-page-paper {
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.doc-page-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #60a5fa;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  padding-bottom: 8px;
+}
+
+.doc-sec {
+  margin-bottom: 14px;
+}
+
+.doc-sec-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main, #e5e7eb);
+  margin-bottom: 4px;
+}
+
+.doc-sec-body {
+  font-size: 13px;
+  color: var(--text-sub, #9ca3af);
+  line-height: 1.6;
+}

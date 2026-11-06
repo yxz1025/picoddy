@@ -1,0 +1,123 @@
+.table-widget {
+  background: var(--bg-surface, #1e1e24);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.table-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+.table-widget-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main, #ececec);
+}
+
+.table-row-count {
+  font-size: 11px;
+  color: var(--text-sub, #888);
+  font-weight: normal;
+}
+
+.table-widget-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-search-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--text-main, #eee);
+  outline: none;
+  width: 140px;
+}
+
+.table-float-btn {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.table-float-btn:hover {
+  background: var(--accent-border);
+}
+
+.table-widget-body {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.table-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-sub, #777);
+  font-size: 12px;
+}
+
+.gen-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.gen-table th {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text-sub, #aaa);
+  font-weight: 500;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  user-select: none;
+}
+
+.sortable-th {
+  cursor: pointer;
+}
+
+.sortable-th:hover {
+  color: var(--text-main, #fff);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gen-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-main, #ddd);
+  white-space: nowrap;
+}
+
+.gen-table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.table-widget-footer {
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 11px;
+  color: var(--text-sub, #777);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}

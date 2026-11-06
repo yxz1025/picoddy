@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "mode": "cross-target",
+  "environment": "REPLACE_TEST_ENV",
+  "repositories": [
+    {
+      "id": "repo-a",
+      "path": "REPLACE_ASSOCIATED_REPOSITORY_A"
+    },
+    {
+      "id": "repo-b",
+      "path": "REPLACE_ASSOCIATED_REPOSITORY_B"
+    }
+  ],
+  "targets": [
+    {
+      "id": "a",
+      "kind": "web",
+      "repositoryIds": [
+        "repo-a"
+      ],
+      "baseUrl": "https://REPLACE-A.invalid",
+      "entryPath": "/",
+      "role": "creator",
+      "credentialRef": "REPLACE_AUTH_REF_A"
+    },
+    {
+      "id": "b",
+      "kind": "wechat-mini",
+      "repositoryIds": [
+        "repo-b"
+      ],
+      "projectPath": "REPLACE_PROJECT_PATH",
+      "cliPath": "REPLACE_DETECTED_CLI_PATH",
+      "appId": "REPLACE_APP_ID",
+      "role": "reviewer",
+      "credentialRef": "REPLACE_AUTH_REF_B"
+    }
+  ],
+  "data": {
+    "setupModule": "REPLACE_FIXTURE_MODULE",
+    "cleanupModule": "REPLACE_CLEANUP_MODULE",
+    "manualPrerequisites": [],
+    "ownership": "current-run-created-only"
+  },
+  "scenarios": [
+    {
+      "id": "SC-001",
+      "caseIds": [
+        "TC-001"
+      ],
+      "acceptanceIds": [
+        "AC-REPLACE"
+      ],
+      "required": true,
+      "steps": [
+        {
+          "id": "a-create",
+          "targetId": "a",
+          "dependsOn": [],
+          "action": "REPLACE_REAL_UI_CREATE",
+          "outputs": [
+            "businessId"
+          ],
+          "assertions": [
+            "REPLACE_CONFIRMED_CREATION_EXPECTATION"
+          ]
+        },
+        {
+          "id": "b-handle",
+          "targetId": "b",
+          "dependsOn": [
+            "a-create"
+          ],
+          "inputs": {
+            "businessId": {
+              "stepId": "a-create",
+              "output": "businessId"
+            }
+          },
+          "action": "REPLACE_REAL_UI_HANDLE",
+          "assertions": [
+            "REPLACE_CONFIRMED_DISPLAY_AND_HANDLING_EXPECTATION"
+          ]
+        },
+        {
+          "id": "a-verify",
+          "targetId": "a",
+          "dependsOn": [
+            "b-handle"
+          ],
+          "inputs": {
+            "businessId": {
+              "stepId": "a-create",
+              "output": "businessId"
+            }
+          },
+          "action": "REPLACE_REAL_UI_VERIFY",
+          "assertions": [
+            "REPLACE_CONFIRMED_FINAL_STATE"
+          ]
+        }
+      ]
+    }
+  ]
+}

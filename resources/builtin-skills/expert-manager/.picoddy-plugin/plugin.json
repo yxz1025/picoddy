@@ -1,0 +1,14 @@
+{
+  "name": "skill-expert-manager",
+  "version": "0.1.0",
+  "description": "Pi-a bundled skill resource: expert-manager.",
+  "author": {
+    "name": "Pi-a"
+  },
+  "category": "skill",
+  "keywords": [
+    "pi-a",
+    "builtin-skill",
+    "expert-manager"
+  ]
+}

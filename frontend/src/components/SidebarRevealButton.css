@@ -1,0 +1,86 @@
+.app-shell {
+  position: relative;
+}
+
+.sidebar-reveal-host {
+  position: absolute;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.sidebar-reveal-host .sidebar-reveal-btn {
+  pointer-events: auto;
+}
+
+/* macOS Electron：与 hiddenInset 红绿灯同一行、紧挨绿灯右侧 */
+.sidebar-reveal-host--mac {
+  top: 0;
+  left: 0;
+  height: var(--chrome-height);
+  padding-left: 78px;
+}
+
+/* 网页 / Windows：贴在主区左上，与顶栏垂直对齐 */
+.sidebar-reveal-host--web {
+  top: 0;
+  left: 10px;
+  height: var(--chrome-height);
+}
+
+.sidebar-reveal-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: no-drag;
+}
+
+.sidebar-reveal-btn:hover,
+.sidebar-reveal-btn:focus-visible {
+  background: var(--bg-hover);
+  color: var(--text);
+  outline: none;
+}
+
+/* 收起后主区顶栏给红绿灯 + 展开按钮留空，避免标题压住控件 */
+.mac-window.app-shell--sidebar-collapsed .chat-header,
+.mac-window.app-shell--sidebar-collapsed .rq-header,
+.mac-window.app-shell--sidebar-collapsed .ep-header,
+.mac-window.app-shell--sidebar-collapsed .auto-header {
+  padding-left: 118px;
+}
+
+.app-shell--sidebar-collapsed:not(.mac-window) .chat-header,
+.app-shell--sidebar-collapsed:not(.mac-window) .rq-header,
+.app-shell--sidebar-collapsed:not(.mac-window) .ep-header,
+.app-shell--sidebar-collapsed:not(.mac-window) .auto-header {
+  padding-left: 52px;
+}
+
+/* macOS：主区顶栏可拖动窗口，控件保持可点 */
+.mac-window .chat-header,
+.mac-window .rq-header,
+.mac-window .ep-header,
+.mac-window .auto-header {
+  -webkit-app-region: drag;
+}
+
+.mac-window .chat-header button,
+.mac-window .chat-header input,
+.mac-window .rq-header button,
+.mac-window .rq-header input,
+.mac-window .ep-header button,
+.mac-window .ep-header input,
+.mac-window .auto-header button,
+.mac-window .auto-header input {
+  -webkit-app-region: no-drag;
+}

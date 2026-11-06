@@ -1,0 +1,77 @@
+{
+  "name": "product-management",
+  "version": "1.3.0",
+  "description": "产品管理插件，支持 PRD、符合前端规范的交互原型、评审交付，以及路线图规划、利益相关者沟通、用户研究、竞品分析和指标审查。",
+  "author": {
+    "name": "PiCoddy"
+  },
+  "homepage": {
+    "url": "",
+    "type": "github"
+  },
+  "displayName": {
+    "zh": "产品专家",
+    "en": "Product Management Expert"
+  },
+  "profession": {
+    "zh": "产品管理专家",
+    "en": "Product Management Expert"
+  },
+  "displayDescription": {
+    "zh": "覆盖需求分析、PRD、规范化交互原型及评审交付，同时支持路线图、用户研究、竞品分析和产品指标管理。",
+    "en": "A product management expert delivering PRDs, standards-aligned interactive prototypes and review records, alongside roadmaps, research, competitive analysis and metrics."
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "01-ProductDesign",
+  "schemaVersion": 2,
+  "tags": [
+    {
+      "zh": "产品管理",
+      "en": "Product Management"
+    },
+    {
+      "zh": "产品经理",
+      "en": "Product Manager"
+    },
+    {
+      "zh": "PRD",
+      "en": "PRD"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "将我的需求交付为 PRD、可交互原型和评审记录",
+      "en": "Turn my requirements into a PRD, interactive prototype and review record"
+    },
+    {
+      "zh": "帮我规划产品路线图",
+      "en": "Help me plan a product roadmap"
+    },
+    {
+      "zh": "帮我设计产品指标体系",
+      "en": "Help me design a product metrics framework"
+    }
+  ],
+  "defaultInitPrompt": {
+    "zh": "将我的需求交付为 PRD、可交互原型和评审记录",
+    "en": "Turn my requirements into a PRD, interactive prototype and review record"
+  },
+  "plugin": "product-management",
+  "license": "",
+  "skills": [
+    "./skills/product-management-workflows",
+    "./skills/feature-spec",
+    "./skills/product-delivery",
+    "./skills/frontend",
+    "./skills/roadmap-management",
+    "./skills/stakeholder-comms",
+    "./skills/user-research-synthesis",
+    "./skills/competitive-analysis",
+    "./skills/metrics-tracking"
+  ],
+  "expertType": "agent",
+  "agentName": "product-management-expert",
+  "agents": [
+    "./agents/product-management-expert.md"
+  ]
+}

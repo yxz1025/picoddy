@@ -1,0 +1,284 @@
+.present-files-batch {
+  --artifact-tone-web: var(--accent);
+  --artifact-tone-web-soft: color-mix(in srgb, var(--accent) 12%, var(--bg));
+  --artifact-tone-web-border: color-mix(in srgb, var(--accent) 24%, var(--border-soft));
+  --artifact-tone-image: #8b5cf6;
+  --artifact-tone-image-soft: color-mix(in srgb, #8b5cf6 12%, var(--bg));
+  --artifact-tone-image-border: color-mix(in srgb, #8b5cf6 24%, var(--border-soft));
+  --artifact-tone-document: #2563eb;
+  --artifact-tone-document-soft: color-mix(in srgb, #2563eb 12%, var(--bg));
+  --artifact-tone-document-border: color-mix(in srgb, #2563eb 24%, var(--border-soft));
+  --artifact-tone-spreadsheet: var(--green);
+  --artifact-tone-spreadsheet-soft: color-mix(in srgb, var(--green) 12%, var(--bg));
+  --artifact-tone-spreadsheet-border: color-mix(in srgb, var(--green) 24%, var(--border-soft));
+  --artifact-tone-presentation: #f59e0b;
+  --artifact-tone-presentation-soft: color-mix(in srgb, #f59e0b 12%, var(--bg));
+  --artifact-tone-presentation-border: color-mix(in srgb, #f59e0b 24%, var(--border-soft));
+  --artifact-tone-video: #ec4899;
+  --artifact-tone-video-soft: color-mix(in srgb, #ec4899 12%, var(--bg));
+  --artifact-tone-video-border: color-mix(in srgb, #ec4899 24%, var(--border-soft));
+  --artifact-tone-code: #14b8a6;
+  --artifact-tone-code-soft: color-mix(in srgb, #14b8a6 12%, var(--bg));
+  --artifact-tone-code-border: color-mix(in srgb, #14b8a6 24%, var(--border-soft));
+  --artifact-tone-data: #6366f1;
+  --artifact-tone-data-soft: color-mix(in srgb, #6366f1 12%, var(--bg));
+  --artifact-tone-data-border: color-mix(in srgb, #6366f1 24%, var(--border-soft));
+  --artifact-tone-text: var(--text-2);
+  --artifact-tone-text-soft: color-mix(in srgb, var(--text-2) 10%, var(--bg));
+  --artifact-tone-text-border: color-mix(in srgb, var(--text-2) 18%, var(--border-soft));
+  --artifact-tone-unknown: var(--text-3);
+  --artifact-tone-unknown-soft: color-mix(in srgb, var(--text-3) 10%, var(--bg));
+  --artifact-tone-unknown-border: color-mix(in srgb, var(--text-3) 18%, var(--border-soft));
+  width: calc(100% - 40px);
+  margin: 2px 0 6px 40px;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
+  box-shadow: var(--shadow-sm);
+}
+
+.present-files-batch__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.present-files-batch__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.present-files-batch__title {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.present-files-batch__count {
+  padding: 2px 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-3);
+  font-size: 11px;
+}
+
+.present-files-batch__explanation {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.present-files-batch__problems {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--red) 24%, var(--border-soft));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--red) 10%, var(--bg));
+  color: var(--red);
+}
+
+.present-files-batch__problems-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.present-files-batch__problems-copy p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.present-files-batch__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.artifact-card {
+  --artifact-tone: var(--artifact-tone-unknown);
+  --artifact-tone-soft: var(--artifact-tone-unknown-soft);
+  --artifact-tone-border: var(--artifact-tone-unknown-border);
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.artifact-card--web {
+  --artifact-tone: var(--artifact-tone-web);
+  --artifact-tone-soft: var(--artifact-tone-web-soft);
+  --artifact-tone-border: var(--artifact-tone-web-border);
+}
+
+.artifact-card--image {
+  --artifact-tone: var(--artifact-tone-image);
+  --artifact-tone-soft: var(--artifact-tone-image-soft);
+  --artifact-tone-border: var(--artifact-tone-image-border);
+}
+
+.artifact-card--document {
+  --artifact-tone: var(--artifact-tone-document);
+  --artifact-tone-soft: var(--artifact-tone-document-soft);
+  --artifact-tone-border: var(--artifact-tone-document-border);
+}
+
+.artifact-card--spreadsheet {
+  --artifact-tone: var(--artifact-tone-spreadsheet);
+  --artifact-tone-soft: var(--artifact-tone-spreadsheet-soft);
+  --artifact-tone-border: var(--artifact-tone-spreadsheet-border);
+}
+
+.artifact-card--presentation {
+  --artifact-tone: var(--artifact-tone-presentation);
+  --artifact-tone-soft: var(--artifact-tone-presentation-soft);
+  --artifact-tone-border: var(--artifact-tone-presentation-border);
+}
+
+.artifact-card--video {
+  --artifact-tone: var(--artifact-tone-video);
+  --artifact-tone-soft: var(--artifact-tone-video-soft);
+  --artifact-tone-border: var(--artifact-tone-video-border);
+}
+
+.artifact-card--code {
+  --artifact-tone: var(--artifact-tone-code);
+  --artifact-tone-soft: var(--artifact-tone-code-soft);
+  --artifact-tone-border: var(--artifact-tone-code-border);
+}
+
+.artifact-card--data {
+  --artifact-tone: var(--artifact-tone-data);
+  --artifact-tone-soft: var(--artifact-tone-data-soft);
+  --artifact-tone-border: var(--artifact-tone-data-border);
+}
+
+.artifact-card--text {
+  --artifact-tone: var(--artifact-tone-text);
+  --artifact-tone-soft: var(--artifact-tone-text-soft);
+  --artifact-tone-border: var(--artifact-tone-text-border);
+}
+
+.artifact-card--unknown {
+  --artifact-tone: var(--artifact-tone-unknown);
+  --artifact-tone-soft: var(--artifact-tone-unknown-soft);
+  --artifact-tone-border: var(--artifact-tone-unknown-border);
+}
+
+.artifact-card__main,
+.artifact-card__folder {
+  border: 1px solid var(--border-soft);
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.artifact-card__main {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.artifact-card__main:hover,
+.artifact-card__folder:hover {
+  border-color: var(--artifact-tone-border);
+  background: color-mix(in srgb, var(--artifact-tone-soft) 72%, var(--bg));
+}
+
+.artifact-card__main:focus-visible,
+.artifact-card__folder:focus-visible {
+  outline: 2px solid var(--artifact-tone);
+  outline-offset: 2px;
+}
+
+.artifact-card__preview {
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-card__thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.artifact-card__icon-shell {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--artifact-tone);
+  background: color-mix(in srgb, var(--artifact-tone) 14%, transparent);
+}
+
+.artifact-card__meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.artifact-card__title,
+.artifact-card__subtitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artifact-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.artifact-card__subtitle {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.artifact-card__folder {
+  width: 38px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .present-files-batch {
+    width: calc(100% - 24px);
+    margin-left: 24px;
+  }
+
+  .present-files-batch__grid {
+    grid-template-columns: 1fr;
+  }
+}

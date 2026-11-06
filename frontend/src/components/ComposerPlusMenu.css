@@ -1,0 +1,1210 @@
+.composer-plus {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.composer-plus__file-input {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.composer-shell--file-drag {
+  border-color: var(--accent) !important;
+}
+
+.composer-file-drop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--bg) 88%, var(--accent) 12%);
+  color: var(--text);
+  pointer-events: none;
+}
+
+.composer-file-drop-overlay__title {
+  font-size:var(--font-body);
+  font-weight: 600;
+}
+
+.composer-file-drop-overlay__hint {
+  color: var(--text-3);
+  font-size:var(--font-footnote);
+}
+
+.composer-plus__trigger {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease,
+    border-radius 160ms ease;
+}
+
+.composer-plus__trigger>svg {
+  display: block;
+  transition: transform 180ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.composer-plus__trigger:hover,
+.composer-plus__trigger[aria-expanded="true"] {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-radius: 999px;
+}
+
+.composer-plus__trigger[aria-expanded="true"]>svg {
+  transform: rotate(45deg);
+}
+
+.composer-plus__trigger:active {
+  transform: scale(0.94);
+}
+
+.composer-plus__trigger:focus-visible,
+.composer-plus__item:focus-visible,
+.composer-plus__detail-item:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.composer-plus__menu,
+.composer-plus__submenu {
+  position: absolute;
+  z-index: 99999;
+  padding: 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.24),
+    0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  animation: composer-plus-in 130ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.composer-plus__menu {
+  left: 0;
+  bottom: calc(100% + 10px);
+  width: 220px;
+}
+
+.composer-plus__menu:focus,
+.composer-plus__menu:focus-visible {
+  outline: none;
+}
+
+.composer-plus__submenu {
+  position: absolute;
+  width: min(300px, calc(100vw - 16px));
+  min-width: min(260px, calc(100vw - 16px));
+  max-width: min(340px, calc(100vw - 16px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  animation: none;
+}
+
+.composer-plus__item,
+.composer-plus__detail-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.composer-plus__item {
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size:var(--font-caption);
+  font-weight:400;
+}
+
+.composer-plus__item:hover,
+.composer-plus__item.is-active,
+.composer-plus__detail-item:hover,
+.composer-plus__detail-item:focus-visible {
+  background: var(--bg-hover);
+}
+
+.composer-plus__item>svg:first-child {
+  color: var(--text-2);
+}
+
+.composer-plus__item.is-active>svg:first-child {
+  color:var(--accent-text);
+}
+
+.composer-plus__chevron {
+  margin-left: auto;
+  color: var(--text-3);
+}
+
+.composer-plus__heading {
+  padding: 7px 10px 5px;
+  color: var(--text-3);
+  font-size:var(--font-footnote);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.composer-plus__detail-item {
+  min-height: 44px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-plus__detail-item:disabled,
+.composer-plus__detail-item[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.62;
+}
+
+.composer-plus__detail-item:disabled:hover {
+  background: transparent;
+}
+
+.composer-plus__detail-item>svg:last-child {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color:var(--accent-text);
+}
+
+.composer-plus__detail-copy {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.composer-plus__detail-copy strong,
+.composer-plus__detail-copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.composer-plus__detail-copy strong {
+  color: var(--text);
+  font-size:var(--font-caption);
+  font-weight:500;
+}
+
+.composer-plus__detail-copy small {
+  color: var(--text-3);
+  font-size:var(--font-footnote);
+  font-weight: 400;
+}
+
+.composer-plus__avatar,
+.composer-plus__skill-glyph {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  display: grid;
+  place-items: center;
+}
+
+.composer-plus__avatar {
+  font-size:var(--font-section);
+  overflow: hidden;
+}
+
+.composer-plus__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.composer-plus__skill-glyph {
+  border: 1px solid hsl(var(--skill-icon-hue) 72% 52% / 0.32);
+  background: hsl(var(--skill-icon-hue) 82% 52% / 0.14);
+  color: hsl(var(--skill-icon-hue) 68% 44%);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.composer-plus__status-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--text-3);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text-3) 14%, transparent);
+}
+
+.composer-plus__status-dot.is-connected {
+  background: #22a06b;
+  box-shadow: 0 0 0 3px rgba(34, 160, 107, 0.14);
+}
+
+.composer-plus__status-dot.is-disabled {
+  background: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.14);
+}
+
+.composer-plus__status {
+  padding: 18px 12px;
+  color: var(--text-3);
+  font-size:var(--font-footnote);
+  text-align: center;
+}
+
+.composer-plus__error {
+  margin: 5px 4px 2px;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, #d14343 32%, var(--border-soft));
+  border-radius: 8px;
+  background: color-mix(in srgb, #d14343 8%, var(--bg));
+  color: #d14343;
+  font-size:var(--font-footnote);
+  line-height: 1.35;
+}
+
+.composer-plus__separator {
+  height: 1px;
+  margin: 5px 4px;
+  background: var(--border-soft);
+}
+
+.composer-pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px 2px;
+}
+
+.composer-connector-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  max-width: 240px;
+}
+
+.composer-connector-control {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.composer-connector-control__trigger {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.composer-connector-control__trigger:hover,
+.composer-connector-control__trigger[aria-expanded="true"] {
+  background: color-mix(in srgb, var(--bg-hover) 78%, var(--text) 7%);
+}
+
+.composer-connector-control__trigger:active {
+  transform: scale(0.95);
+}
+
+.composer-connector-control__trigger:focus-visible,
+.composer-connector-control__switch:focus-visible,
+.composer-connector-control__manage:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.composer-connector-control__glyph {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: hsl(var(--connector-hue) 75% 93%);
+  color: hsl(var(--connector-hue) 65% 32%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size:var(--font-footnote);
+  font-weight: 750;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px hsl(var(--connector-hue) 60% 78% / .45);
+}
+
+.composer-connector-control__glyph.is-large {
+  width: 26px;
+  height: 26px;
+  font-size:var(--font-section);
+}
+
+[data-theme="dark"] .composer-connector-control__glyph {
+  background: hsl(var(--connector-hue) 38% 23%);
+  color: hsl(var(--connector-hue) 85% 82%);
+  box-shadow: inset 0 0 0 1px hsl(var(--connector-hue) 55% 55% / .3);
+}
+
+.composer-connector-control__glyph.has-logo {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+.composer-connector-control__glyph img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.composer-connector-control__popover {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  z-index: 99999;
+  width: 236px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), 0 2px 10px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  animation: composer-plus-in 130ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.composer-connector-control__current {
+  min-height: 64px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-connector-control__name {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: var(--text);
+  font-size:var(--font-body);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.composer-connector-control__switch {
+  width: 34px;
+  height: 20px;
+  padding: 2px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--text-3);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.composer-connector-control__switch.is-on {
+  justify-content: flex-end;
+  background: #55c9aa;
+}
+
+.composer-connector-control__switch>span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+}
+
+.composer-connector-control__manage {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-top: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font: inherit;
+  font-size:var(--font-caption);
+  text-align: left;
+  cursor: pointer;
+}
+
+.composer-connector-control__manage:hover {
+  background: var(--bg-hover);
+}
+
+.composer-pending--inline {
+  flex: 0 1 auto;
+  align-self: flex-start;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 0 4px;
+}
+
+.composer-pending--inline .composer-chip {
+  max-width: 220px;
+  height: 29px;
+  padding: 4px 8px;
+  gap: 4px;
+  border-radius: 10px;
+}
+
+.composer-pending--inline .composer-chip__glyph {
+  width: 21px;
+  height: 21px;
+  border-radius: 6px;
+}
+
+.composer-pending--inline .composer-chip__copy {
+  max-width: 150px;
+}
+
+.composer-pending--inline .composer-chip__copy small {
+  display: none;
+}
+
+.composer-pending--inline .composer-chip__remove {
+  width: 18px;
+  height: 18px;
+}
+
+.composer-chip {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 260px;
+  height: 38px;
+  padding: 4px 5px 4px 7px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg-subtle) 76%, var(--bg));
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.composer-chip--skill {
+  border-color: var(--accent-border);
+  background: color-mix(in srgb, var(--accent-soft) 72%, var(--bg));
+}
+
+.composer-chip--fixed {
+  padding-right: 9px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.composer-chip--connector {
+  border-color: color-mix(in srgb, #22a06b 36%, var(--border-strong));
+  background: color-mix(in srgb, #22a06b 8%, var(--bg));
+}
+
+.composer-chip--uploading {
+  padding-right: 10px;
+  color: var(--text-2);
+  font-size:var(--font-footnote);
+}
+
+.composer-chip__glyph {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  border-radius: 7px;
+  background: var(--bg);
+  color: var(--text-2);
+  display: grid;
+  place-items: center;
+  font-size:var(--font-body);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+}
+
+.composer-chip--skill .composer-chip__glyph {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.composer-chip--connector .composer-chip__glyph {
+  color: #18875b;
+}
+
+.composer-chip__copy {
+  min-width: 0;
+  max-width: 185px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.1;
+}
+
+.composer-chip__copy strong,
+.composer-chip__copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.composer-chip__copy strong {
+  font-size:var(--font-footnote);
+  font-weight: 600;
+}
+
+.composer-chip__copy small {
+  color: var(--text-3);
+  font-size:var(--font-footnote);
+}
+
+.composer-chip__remove {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.composer-chip__remove:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.composer-chip__remove:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -1px;
+}
+
+.composer-chip__remove:disabled {
+  cursor: wait;
+}
+
+.composer-chip__spinner {
+  animation: composer-chip-spin 800ms linear infinite;
+}
+
+.composer-attachment-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 220;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 10px 14px;
+  transform: translateX(-50%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 8px 32px #0002;
+  color: var(--text);
+  font-size:var(--font-caption);
+  line-height: 1.45;
+  pointer-events: none;
+  -webkit-app-region: no-drag;
+}
+
+.composer-attachment-toast svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color:var(--accent-text);
+}
+
+.composer-attachment-toast span {
+  overflow-wrap: anywhere;
+}
+
+@keyframes composer-plus-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes composer-chip-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .composer-plus__menu,
+  .composer-plus__submenu,
+  .composer-chip__spinner,
+  .composer-editor[data-empty="true"][data-busy="true"]::after {
+    animation: none;
+  }
+
+  .composer-plus__trigger>svg {
+    transition: none;
+  }
+
+  .composer-editor[data-empty="true"][data-busy="true"]::after {
+    background: none;
+    color: var(--text-3);
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/* ── contenteditable 行内技能标签 ── */
+.composer-editor[data-empty="true"]::after {
+  content: attr(data-placeholder);
+  display: inline-block;
+  vertical-align: middle;
+  margin: 2px 0;
+  font-size:var(--font-body);
+  line-height: 1.5;
+  color: var(--text-3);
+  pointer-events: none;
+}
+
+.composer-editor[data-empty="true"][data-busy="true"]::after {
+  display: inline-block;
+  color: var(--text-3);
+  background-color: var(--text-3);
+  background-image: linear-gradient(90deg,
+      transparent 0%,
+      transparent 44%,
+      var(--text) 50%,
+      transparent 56%,
+      transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: status-shimmer 2.2s linear infinite;
+}
+
+.composer-token__text {
+  vertical-align: middle;
+}
+
+.composer-token__text--caret-anchor {
+  font-size: inherit;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.composer-token {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  vertical-align: middle;
+  margin: 2px 4px;
+  min-height: 28px;
+  padding: 4px 8px;
+  gap: 4px;
+  border: 1px solid color-mix(in srgb, var(--text) 13%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 5%, var(--bg));
+  color: var(--text-2);
+  font-size:var(--font-caption);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+.composer-editor .composer-token,
+.composer-editor .composer-attachment-token,
+.composer-editor .composer-context-token {
+  -webkit-user-select: all;
+  user-select: all;
+  cursor: pointer;
+}
+
+.composer-editor .composer-token *,
+.composer-editor .composer-attachment-token *,
+.composer-editor .composer-context-token * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.composer-editor .composer-token::selection,
+.composer-editor .composer-token *::selection,
+.composer-editor .composer-attachment-token::selection,
+.composer-editor .composer-attachment-token *::selection,
+.composer-editor .composer-context-token::selection,
+.composer-editor .composer-context-token *::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.composer-context-token {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 190px;
+  vertical-align: middle;
+  margin: 2px 4px;
+  min-height: 28px;
+  padding: 4px 8px;
+  gap: 4px;
+  border: 1px solid color-mix(in srgb, var(--text) 13%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 5%, var(--bg));
+  color: var(--text-2);
+  font-size:var(--font-caption);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+/* Keep selected skills compact and visually distinct from text in the editor. */
+.composer-token:not([data-icon]),
+.composer-context-token {
+  min-height: 28px;
+  padding: 4px 9px;
+  gap: 5px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 6%, var(--bg));
+  color: var(--text);
+  font-size:var(--font-caption);
+  font-weight: 500;
+}
+
+:root:not([data-theme="dark"]) .composer-token:not([data-icon]),
+:root:not([data-theme="dark"]) .composer-context-token,
+:root:not([data-theme="dark"]) .composer-attachment-token {
+  background: color-mix(in srgb, var(--text) 14%, var(--bg));
+}
+
+:root[data-theme="dark"] .composer-token:not([data-icon]),
+:root[data-theme="dark"] .composer-context-token,
+:root[data-theme="dark"] .composer-attachment-token {
+  background: #3d3d3d;
+}
+
+.composer-token:not([data-icon]) .composer-chip-lead,
+.composer-context-token .composer-chip-lead {
+  width: 18px;
+  height: 18px;
+}
+
+.composer-token:not([data-icon]) .composer-token__skill-icon,
+.composer-context-token .composer-token__skill-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.composer-chip-lead {
+  position: relative;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.composer-token::before,
+.composer-context-token::before,
+.composer-token:not([data-icon]) .composer-chip-lead::before,
+.composer-context-token .composer-chip-lead::before {
+  content: "⚒\FE0E";
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  font-family: "Segoe UI Symbol", "Apple Symbols", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.composer-token:has(.composer-chip-lead)::before,
+.composer-context-token:has(.composer-chip-lead)::before,
+.composer-token[data-icon]::before,
+.composer-token[data-icon] .composer-chip-lead::before,
+.composer-token:has(.composer-token__skill-icon) .composer-chip-lead::before,
+.composer-context-token:has(.composer-token__skill-icon)::before,
+.composer-context-token:has(.composer-token__skill-icon) .composer-chip-lead::before {
+  content: none;
+  display: none;
+}
+
+.composer-token[data-icon] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.composer-token.is-pending-delete,
+.composer-attachment-token.is-pending-delete,
+.composer-context-token.is-pending-delete {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.composer-editor .composer-token.is-selection-selected,
+.composer-editor .composer-attachment-token.is-selection-selected,
+.composer-editor .composer-context-token.is-selection-selected,
+.composer-editor .composer-token.is-selection-selected[data-icon] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: none;
+}
+
+.composer-editor .composer-token.is-selection-selected .composer-token__remove,
+.composer-editor .composer-token.is-selection-selected[data-icon] .composer-token__remove,
+.composer-editor .composer-attachment-token.is-selection-selected .composer-attachment-token__remove,
+.composer-editor .composer-context-token.is-selection-selected .composer-context-token__remove {
+  color: var(--accent-contrast);
+  opacity: 0;
+}
+
+.composer-editor .composer-token.is-selection-selected:hover .composer-token__remove,
+.composer-editor .composer-token.is-selection-selected:focus-within .composer-token__remove,
+.composer-editor .composer-token.is-selection-selected .composer-token__remove:focus-visible,
+.composer-editor .composer-attachment-token.is-selection-selected:hover .composer-attachment-token__remove,
+.composer-editor .composer-attachment-token.is-selection-selected:focus-within .composer-attachment-token__remove,
+.composer-editor .composer-attachment-token.is-selection-selected .composer-attachment-token__remove:focus-visible {
+  opacity: 1;
+}
+
+.composer-editor .composer-attachment-token.is-selection-selected .composer-attachment-token__glyph {
+  border-color: var(--accent-contrast);
+  background: color-mix(in srgb, var(--accent-contrast) 16%, transparent);
+}
+
+.composer-editor .composer-attachment-token.is-selection-selected .composer-attachment-token__glyph::after {
+  background: var(--accent-contrast);
+  box-shadow: 0 3px 0 var(--accent-contrast), 0 6px 0 var(--accent-contrast);
+}
+
+.composer-token__scene-icon,
+.composer-token__skill-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: opacity 0.12s ease;
+}
+
+.composer-token[data-icon="file-text"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="bar-chart-3"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v16a2 2 0 0 0 2 2h16'/%3E%3Cpath d='M18 17V9'/%3E%3Cpath d='M13 17V5'/%3E%3Cpath d='M8 17v-3'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v16a2 2 0 0 0 2 2h16'/%3E%3Cpath d='M18 17V9'/%3E%3Cpath d='M13 17V5'/%3E%3Cpath d='M8 17v-3'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="globe"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="layout"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M3 9h18'/%3E%3Cpath d='M9 21V9'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M3 9h18'/%3E%3Cpath d='M9 21V9'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="layout-dashboard"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="shapes"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3Ccircle cx='17.5' cy='17.5' r='3.5'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3Ccircle cx='17.5' cy='17.5' r='3.5'/%3E%3C/svg%3E");
+}
+
+.composer-token[data-icon="file-code"] .composer-token__scene-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='m10 13-2 2 2 2'/%3E%3Cpath d='m14 17 2-2-2-2'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='m10 13-2 2 2 2'/%3E%3Cpath d='m14 17 2-2-2-2'/%3E%3C/svg%3E");
+}
+
+.composer-token__skill-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9'/%3E%3Cpath d='m18 15 4-4'/%3E%3Cpath d='m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9'/%3E%3Cpath d='m18 15 4-4'/%3E%3Cpath d='m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5'/%3E%3C/svg%3E");
+}
+
+.composer-token__label,
+.composer-context-token__label {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  min-width: 0;
+  height: 16px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.composer-token__remove,
+.composer-context-token__remove,
+.composer-attachment-token__remove {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0;
+  line-height: 0;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  transition: opacity 0.12s ease, color 0.12s ease;
+}
+
+.composer-token__remove::before,
+.composer-context-token__remove::before,
+.composer-attachment-token__remove::before {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E");
+}
+
+.composer-editor .composer-token:hover:not(.is-selection-selected),
+.composer-editor .composer-context-token:hover:not(.is-selection-selected),
+.composer-editor .composer-attachment-token:hover:not(.is-selection-selected) {
+  background: color-mix(in srgb, var(--text) 8%, var(--bg));
+}
+
+.composer-editor .composer-token[data-icon]:hover:not(.is-selection-selected) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+:root:not([data-theme="dark"]) .composer-editor .composer-token:not([data-icon]):hover:not(.is-selection-selected),
+:root:not([data-theme="dark"]) .composer-editor .composer-context-token:hover:not(.is-selection-selected),
+:root:not([data-theme="dark"]) .composer-editor .composer-attachment-token:hover:not(.is-selection-selected) {
+  background: color-mix(in srgb, var(--text) 18%, var(--bg));
+}
+
+:root[data-theme="dark"] .composer-editor .composer-token:not([data-icon]):hover:not(.is-selection-selected),
+:root[data-theme="dark"] .composer-editor .composer-context-token:hover:not(.is-selection-selected),
+:root[data-theme="dark"] .composer-editor .composer-attachment-token:hover:not(.is-selection-selected) {
+  background: #4a4a4a;
+}
+
+.composer-editor .composer-token:hover .composer-chip-lead::before,
+.composer-editor .composer-token:focus-within .composer-chip-lead::before,
+.composer-editor .composer-token:hover .composer-token__scene-icon,
+.composer-editor .composer-token:focus-within .composer-token__scene-icon,
+.composer-editor .composer-token:hover .composer-token__skill-icon,
+.composer-editor .composer-token:focus-within .composer-token__skill-icon,
+.composer-editor .composer-context-token:hover .composer-chip-lead::before,
+.composer-editor .composer-context-token:focus-within .composer-chip-lead::before,
+.composer-editor .composer-context-token:hover .composer-token__skill-icon,
+.composer-editor .composer-context-token:focus-within .composer-token__skill-icon,
+.composer-editor .composer-attachment-token:hover .composer-attachment-token__glyph,
+.composer-editor .composer-attachment-token:focus-within .composer-attachment-token__glyph {
+  opacity: 0;
+}
+
+.composer-editor .composer-token:hover .composer-token__remove,
+.composer-editor .composer-token:focus-within .composer-token__remove,
+.composer-editor .composer-token__remove:focus-visible,
+.composer-editor .composer-context-token:hover .composer-context-token__remove,
+.composer-editor .composer-context-token:focus-within .composer-context-token__remove,
+.composer-editor .composer-context-token__remove:focus-visible,
+.composer-editor .composer-attachment-token:hover .composer-attachment-token__remove,
+.composer-editor .composer-attachment-token:focus-within .composer-attachment-token__remove,
+.composer-editor .composer-attachment-token__remove:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.composer-attachment-token {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: min(220px, 100%);
+  vertical-align: middle;
+  min-height: 28px;
+  margin: 2px 4px;
+  padding: 4px 8px;
+  gap: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 6%, var(--bg));
+  color: var(--text);
+  font-size:var(--font-caption);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+.composer-chip-lead::before {
+  transition: opacity 0.12s ease;
+}
+
+.composer-attachment-token__glyph {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 15px;
+  border: 1.5px solid color-mix(in srgb, var(--text) 62%, var(--text-3));
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  position: relative;
+  transition: opacity 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.composer-attachment-token__glyph::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  right: 2px;
+  height: 1.5px;
+  background: color-mix(in srgb, var(--text) 62%, var(--text-3));
+  box-shadow:
+    0 3px 0 color-mix(in srgb, var(--text) 62%, var(--text-3)),
+    0 6px 0 color-mix(in srgb, var(--text) 62%, var(--text-3));
+}
+
+.composer-attachment-token__label {
+  display: inline-flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 16px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 参考设计-style circular send control. The same neutral surface is used in
+   light and dark themes; the semantic text token keeps the arrow readable. */
+.composer-send-button {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 999px !important;
+  background: color-mix(in srgb, var(--text) 22%, var(--bg-active)) !important;
+  color: var(--text) !important;
+  transition: background .15s ease, color .15s ease, opacity .15s ease,
+    transform .12s ease;
+}
+
+.composer-send-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--text) 32%, var(--bg-active)) !important;
+}
+
+.composer-send-button:active:not(:disabled) {
+  transform: scale(.96);
+}
+
+.composer-send-button>svg {
+  width: 20px;
+  height: 20px;
+}
+
+.composer-send-spinner {
+  animation: composer-send-spin .9s linear infinite;
+}
+
+@keyframes composer-send-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .composer-send-spinner { animation-duration: 2.4s; }
+}
+
+:root[data-theme="dark"] .composer-send-button {
+  background: color-mix(in srgb, var(--text) 34%, var(--bg-subtle)) !important;
+}
+
+:root[data-theme="dark"] .composer-send-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--text) 46%, var(--bg-subtle)) !important;
+}
+
+.composer-plus__connector-logo { width: 22px; height: 22px; flex: 0 0 22px; object-fit: contain; }

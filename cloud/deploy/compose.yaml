@@ -1,0 +1,95 @@
+# Run from cloud/: docker compose --env-file .env -f deploy/compose.yaml up -d --build
+# The single-host executor is added by compose.sandbox.yaml; app services mount no Docker socket.
+name: picoddy-cloud
+x-app: &app
+  image: ${CLOUD_IMAGE:-picoddy-cloud:0.1.0}
+  build:
+    context: ..
+    dockerfile: Dockerfile
+  env_file: ${CLOUD_ENV_FILE:-../.env}
+  environment:
+    HOST: 0.0.0.0
+    PORT: 8080
+    DATABASE_URL: postgresql://picoddy:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@postgres:5432/picoddy_cloud
+    STORAGE_DRIVER: ${STORAGE_DRIVER:-local}
+    STORAGE_LOCAL_ROOT: /app/data/files
+  volumes:
+    - files:/app/data/files
+  restart: unless-stopped
+  init: true
+  read_only: true
+  tmpfs:
+    - /tmp:size=64m,noexec,nosuid
+  security_opt:
+    - no-new-privileges:true
+  cap_drop: [ALL]
+  depends_on:
+    postgres:
+      condition: service_healthy
+  logging:
+    options:
+      max-size: 10m
+      max-file: '3'
+services:
+  postgres:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-picoddy_cloud}
+      POSTGRES_USER: ${POSTGRES_USER:-picoddy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  initialize:
+    <<: *app
+    command: [npm, run, 'db:init']
+    restart: 'no'
+  storage-init:
+    image: ${CLOUD_IMAGE:-picoddy-cloud:0.1.0}
+    user: '0:0'
+    command: [sh, -c, "mkdir -p /app/data/files && chown 1000:1000 /app/data/files"]
+    restart: 'no'
+    read_only: true
+    volumes:
+      - files:/app/data/files
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    cap_add: [CHOWN]
+  api:
+    <<: *app
+    ports:
+      - "${API_BIND_ADDRESS:-127.0.0.1}:${API_PORT:-8080}:8080"
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+      storage-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8080/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  worker:
+    <<: *app
+    command: [npm, run, worker]
+    stop_grace_period: 90s
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+      storage-init:
+        condition: service_completed_successfully
+  scheduler:
+    <<: *app
+    command: [npm, run, scheduler]
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+volumes:
+  database:
+  files:

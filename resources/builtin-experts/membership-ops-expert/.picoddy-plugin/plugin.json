@@ -1,0 +1,70 @@
+{
+  "name": "membership-ops-expert",
+  "version": "1.0.0",
+  "description": "Membership and loyalty operations expert that designs tier systems, points economies, campaigns and full-lifecycle programs, and delivers a polished interactive HTML report",
+  "author": {
+    "name": "WorkBuddy Expert Developer",
+    "email": "ramatu702@gmail.com"
+  },
+  "agents": [
+    "./agents/membership-ops-expert.md"
+  ],
+  "skills": [
+    "./skills/membership-diagnosis",
+    "./skills/tier-benefit-design",
+    "./skills/points-economy",
+    "./skills/lifecycle-ops",
+    "./skills/campaign-playbook",
+    "./skills/membership-report"
+  ],
+  "expertType": "agent",
+  "agentName": "membership-ops-expert",
+  "displayName": {
+    "en": "Membership & Loyalty Operations Expert",
+    "zh": "会员运营专家"
+  },
+  "profession": {
+    "en": "Membership & Loyalty Operations Expert",
+    "zh": "会员运营专家"
+  },
+  "displayDescription": {
+    "en": "A senior membership and loyalty operations expert. Through a structured interview, designs your tier structure, benefit portfolio, points economy, lifecycle segmentation and campaign calendar — every recommendation backed by a unit-economics model (benefit cost ratio, points liability, member LTV, payback period) and China promotion-compliance checks — then delivers a polished, self-contained interactive HTML report you can hand straight to your team.",
+    "zh": "深耕会员体系与忠诚度运营，为你设计等级、权益、积分与全生命周期策略，访谈后输出可落地的方案报告。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "09-OperationsHR",
+  "defaultInitPrompt": {
+    "zh": "帮我从 0 到 1 设计一套会员体系，并输出可落地的 HTML 方案报告",
+    "en": "Design a membership program for me from scratch and deliver an actionable HTML report"
+  },
+  "plugin": "membership-ops-expert",
+  "tags": [
+    {
+      "en": "Membership System",
+      "zh": "会员体系"
+    },
+    {
+      "en": "Points & Rewards",
+      "zh": "积分权益"
+    },
+    {
+      "en": "Lifecycle Ops",
+      "zh": "生命周期运营"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "帮我从 0 到 1 设计一套会员体系，并输出可落地的 HTML 方案报告",
+      "en": "Design a membership program for me from scratch and deliver an actionable HTML report"
+    },
+    {
+      "zh": "诊断我现有的积分体系，算清积分成本与积分负债，给出优化方案",
+      "en": "Audit my existing points program, quantify points cost and liability, and propose fixes"
+    },
+    {
+      "zh": "为我的会员做全生命周期分层运营，并规划一年的会员活动日历",
+      "en": "Build lifecycle segmentation for my members and plan a one-year campaign calendar"
+    }
+  ],
+  "schemaVersion": 2
+}

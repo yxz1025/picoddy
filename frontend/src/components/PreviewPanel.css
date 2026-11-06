@@ -1,0 +1,442 @@
+/* ── 预览面板主容器 ── */
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Compact document tabs keep the preview canvas stable as files accumulate. */
+.preview-file-bar { flex-shrink: 0; min-width: 0; border-bottom: 1px solid var(--border); }
+.preview-tab-strip { display: flex; align-items: center; gap: 8px; padding: 5px 10px; background: var(--bg-subtle); }
+.preview-file-count { display: flex; align-items: center; gap: 5px; flex-shrink: 0; color: var(--text-3); font-size: 11px; font-variant-numeric: tabular-nums; padding-right: 8px; border-right: 1px solid var(--border); }
+.preview-file-list { position: relative; display: flex; flex: 1; min-width: 0; gap: 3px; overflow-x: auto; scrollbar-width: thin; }
+.preview-file-item { display: flex; align-items: center; gap: 7px; flex: 0 0 auto; max-width: 180px; height: 30px; padding: 0 10px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--text-3); cursor: pointer; }
+.preview-file-item:hover { background: var(--bg-hover); color: var(--text); }
+.preview-file-item.active { background: var(--bg); border-color: var(--border); color: var(--text); }
+.preview-file-item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.preview-type-icon { flex-shrink: 0; color: var(--text-3); }
+.preview-type-docx { color: #4789d8; }
+.preview-type-table { color: #36966c; }
+.preview-type-presentation { color: #d47c4b; }
+.preview-type-pdf { color: #d76565; }
+.preview-document-toolbar { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 38px; padding: 0 12px; border-top: 1px solid var(--border); }
+.preview-file-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--text); }
+.preview-format-label { flex-shrink: 0; font-size: 10px; color: var(--text-3); }
+.preview-file-item-folder { display: grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border: none; border-radius: 5px; background: transparent; color: var(--text-3); cursor: pointer; }
+.preview-file-item-folder:hover { background: var(--bg-hover); color: var(--text); }
+.preview-file-item:focus-visible, .preview-file-item-folder:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ── 预览主体 ── */
+.preview-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+  background: var(--bg);
+}
+
+/* ── 公共状态 ── */
+.preview-loading,
+.preview-error,
+.preview-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px;
+  font-size: 13px;
+}
+
+.preview-loading { color: var(--text-3); }
+.preview-error { color: var(--red); }
+.preview-empty { color: var(--text-3); }
+
+/* ── 空状态 ── */
+.preview-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+}
+
+.preview-empty-icon { font-size: 48px; opacity: 0.3; }
+.preview-empty-text { font-size: 13px; color: var(--text-3); }
+
+/* ── Docx 预览（纸张风格，保留白底黑字以模拟打印效果） ── */
+.preview-docx {
+  height: 100%;
+  overflow: auto;
+}
+
+.preview-docx-content {
+  max-width: 100%;
+  padding: 20px 16px;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 100%;
+}
+
+.preview-docx-content h1 { font-size: 1.4em; margin: 1em 0 0.5em; }
+.preview-docx-content h2 { font-size: 1.2em; margin: 0.8em 0 0.4em; }
+.preview-docx-content h3 { font-size: 1.1em; margin: 0.6em 0 0.3em; }
+.preview-docx-content p { margin: 0.4em 0; }
+.preview-docx-content table { border-collapse: collapse; width: 100%; margin: 0.5em 0; }
+.preview-docx-content th, .preview-docx-content td { border: 1px solid #ddd; padding: 6px 8px; font-size: 12px; }
+.preview-docx-content th { background: #f5f5f5; }
+
+[data-theme="dark"] .preview-docx-content {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .preview-docx-content th,
+[data-theme="dark"] .preview-docx-content td {
+  border-color: #444;
+}
+
+[data-theme="dark"] .preview-docx-content th {
+  background: #2a2a2a;
+}
+
+/* ── PDF 预览 ── */
+.preview-pdf {
+  height: 100%;
+}
+
+.preview-pdf-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ── Markdown 预览 ── */
+.preview-md {
+  height: 100%;
+  overflow: auto;
+}
+
+.preview-md-content {
+  max-width: 100%;
+  padding: 16px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.preview-md-content h1 { font-size: 1.3em; margin: 1.2em 0 0.5em; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+.preview-md-content h2 { font-size: 1.15em; margin: 1em 0 0.4em; }
+.preview-md-content h3 { font-size: 1.05em; margin: 0.8em 0 0.3em; }
+.preview-md-content h4 { font-size: 1em; margin: 0.6em 0 0.2em; }
+.preview-md-content p { margin: 0.4em 0; }
+.preview-md-content ul, .preview-md-content ol { margin: 0.4em 0; padding-left: 1.5em; }
+.preview-md-content li { margin: 0.2em 0; }
+.preview-md-content code { background: var(--code-bg); color: var(--code-text); padding: 1px 4px; border-radius: 3px; font-size: 0.9em; }
+.preview-md-content pre { background: var(--code-bg); padding: 12px; border-radius: 6px; overflow-x: auto; }
+.preview-md-content pre code { background: none; padding: 0; color: var(--code-text); }
+.preview-md-content a { color: var(--accent); }
+.preview-md-content hr { border: none; border-top: 1px solid var(--border); margin: 1em 0; }
+.preview-md-content blockquote { border-left: 3px solid var(--accent); margin: 0.5em 0; padding: 0.3em 0.8em; color: var(--text-3); }
+.preview-md-content strong { color: var(--text); }
+.preview-md-content em { color: var(--text-2); }
+.preview-md-html img { max-width: 100%; height: auto; }
+.preview-md-html h1, .preview-md-html h2, .preview-md-html h3,
+.preview-md-html h4, .preview-md-html h5, .preview-md-html h6 { scroll-margin-top: 12px; }
+.preview-md-html h1, .preview-md-html h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+.preview-md-html table { border-collapse: collapse; width: 100%; margin: 0.7em 0; }
+.preview-md-html th, .preview-md-html td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+.preview-md-html th { background: var(--bg-hover); }
+.preview-md-html input[type="checkbox"] { margin-right: 0.4em; accent-color: var(--accent); }
+.preview-md-html pre { background: var(--code-bg); color: var(--code-text); padding: 12px; border-radius: 6px; overflow-x: auto; }
+.preview-md-html code { font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); }
+.preview-md-html .preview-mermaid { overflow-x: auto; margin: 12px 0; text-align: center; }
+.preview-md-html .preview-mermaid svg { max-width: 100%; height: auto; }
+.preview-md-html .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.preview-md-html a { color: var(--accent); }
+
+/* ── 原始文本预览 ── */
+.preview-plain-text {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 18px;
+  overflow: auto;
+  color: var(--text);
+  background: var(--bg);
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre;
+}
+
+/* ── HTML 预览 ── */
+.preview-html {
+  height: 100%;
+}
+
+.preview-html-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--bg);
+}
+
+/* ── 表格预览 ── */
+.preview-table {
+  height: 100%;
+  overflow: auto;
+}
+
+.preview-table-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-subtle);
+}
+
+.preview-table-tab {
+  padding: 3px 10px;
+  font-size: 11px;
+  background: var(--bg-hover);
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.preview-table-tab.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.preview-table-wrap {
+  overflow: auto;
+  padding: 8px;
+}
+
+.preview-table-wrap table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  font-size: 11px;
+}
+
+.preview-table-wrap th {
+  background: var(--bg-hover);
+  color: var(--text);
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.preview-table-wrap td {
+  padding: 4px 10px;
+  border: 1px solid var(--border-soft);
+  color: var(--text-3);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-table-wrap tr:hover td {
+  background: var(--bg-hover);
+}
+
+/* ── PPTX 预览 ── */
+.preview-pptx {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-pptx-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.preview-pptx-nav {
+  padding: 3px 10px;
+  font-size: 11px;
+  background: var(--bg-hover);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.preview-pptx-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.preview-pptx-nav:not(:disabled):hover {
+  background: var(--bg-active);
+}
+
+.preview-pptx-indicator {
+  font-size: 12px;
+  color: var(--text-3);
+  min-width: 60px;
+  text-align: center;
+}
+
+.preview-pptx-slide {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  background: var(--bg-subtle);
+  margin: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.preview-pptx-title {
+  font-size: 16px;
+  margin: 0 0 16px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.preview-pptx-body p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 4px 0;
+  color: var(--text-3);
+}
+
+/* ── 图片预览 ── */
+.preview-image {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: auto;
+}
+
+.preview-image-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* ── 视频预览 ── */
+.preview-video {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: #111;
+}
+
+.preview-video-player {
+  width: min(100%, 960px);
+  max-height: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* ── 内置浏览器 ── */
+.preview-browser {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-browser-toolbar {
+  display: flex;
+  gap: 6px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.preview-browser-url {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--bg-hover);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+}
+
+.preview-browser-url:focus {
+  border-color: var(--accent);
+}
+
+.preview-browser-go {
+  padding: 4px 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.preview-browser-go:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.preview-browser-webview {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.preview-browser-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ── 不支持格式 ── */
+.preview-unsupported {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  padding: 24px;
+}
+
+.preview-unsupported-icon { font-size: 48px; opacity: 0.5; }
+.preview-unsupported-name { font-size: 14px; color: var(--text); }
+.preview-unsupported-ext { font-size: 12px; color: var(--text-3); }
+.preview-unsupported-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+/* Native Office view occupies only the measured canvas below the toolbar. */
+.office-preview { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.office-toolbar { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text-3); }
+.office-toolbar button, .office-placeholder button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid var(--border); border-radius: 5px; background: var(--bg); color: var(--text); padding: 4px 8px; font-size: 11px; cursor: pointer; }
+.office-toolbar button:disabled { opacity: .45; cursor: default; }
+.office-message { flex: 1; min-width: 0; }
+.office-mode { flex-shrink: 0; }
+.office-surface { flex: 1; min-height: 0; position: relative; background: var(--bg-subtle); }
+.office-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; box-sizing: border-box; font-size: 12px; color: var(--text-3); text-align: center; }
+.office-fallback { flex: 1; min-height: 0; overflow: auto; }

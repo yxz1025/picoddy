@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "node": {
+    "source": "electron",
+    "electronVersion": "43.2.0",
+    "nodeVersion": "24.18.0",
+    "npmVersion": "11.7.0"
+  },
+  "python": {
+    "version": "3.13.15",
+    "platforms": {
+      "darwin-arm64": {
+        "archive": "cpython-3.13.15+20260901-aarch64-apple-darwin-install_only.tar.gz",
+        "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.13.15%2B20260901-aarch64-apple-darwin-install_only.tar.gz",
+        "archiveRoot": "python",
+        "format": "tar.gz",
+        "sha256": "b9054a9d3d54f4cb5573d44907fddb29874b08909bde73f29f2868cf872223ee",
+        "size": 25293188,
+        "executable": "bin/python3"
+      },
+      "darwin-x64": {
+        "archive": "cpython-3.13.15+20260901-x86_64-apple-darwin-install_only.tar.gz",
+        "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.13.15%2B20260901-x86_64-apple-darwin-install_only.tar.gz",
+        "archiveRoot": "python",
+        "format": "tar.gz",
+        "sha256": "49f0d97f506b855eed60b74a8ac138595c5b39799a6aa5e0d7ca8abe1019a4d4",
+        "size": 25037769,
+        "executable": "bin/python3"
+      },
+      "win32-ia32": {
+        "archive": "cpython-3.13.15+20260901-i686-pc-windows-msvc-install_only.tar.gz",
+        "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.13.15%2B20260901-i686-pc-windows-msvc-install_only.tar.gz",
+        "archiveRoot": "python",
+        "format": "tar.gz",
+        "sha256": "62ab9e252bb85f4538972f99eb1824d720c3f98ae1b2f7cd6988a93cba515252",
+        "size": 44735626,
+        "executable": "python.exe"
+      },
+      "win32-x64": {
+        "archive": "cpython-3.13.15+20260901-x86_64-pc-windows-msvc-install_only.tar.gz",
+        "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.13.15%2B20260901-x86_64-pc-windows-msvc-install_only.tar.gz",
+        "archiveRoot": "python",
+        "format": "tar.gz",
+        "sha256": "9bcc038a0bf180612ed56dec93d4977d035e80b8d9320ef51a38c287baf134b7",
+        "size": 47042104,
+        "executable": "python.exe"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+services:
+  api:
+    volumes:
+      - secrets:/app/secrets:ro
+  worker:
+    volumes:
+      - secrets:/app/secrets:ro
+  scheduler:
+    volumes:
+      - secrets:/app/secrets:ro
+  storage-init:
+    volumes:
+      - ${CLOUD_SECRET_DIR:?Required}:/bootstrap-secrets:ro
+      - secrets:/app/secrets
+    # chmod runs after chown, including on repeated deployments.
+    cap_add: [DAC_OVERRIDE, FOWNER]
+    command: [sh, -ec, "mkdir -p /app/data/files /app/secrets; chown 1000:1000 /app/data/files /app/secrets; if [ -f /bootstrap-secrets/skillhub-secret.enc ]; then cp /bootstrap-secrets/skillhub-secret.enc /app/secrets/skillhub-secret.enc; chown 1000:1000 /app/secrets/skillhub-secret.enc; chmod 600 /app/secrets/skillhub-secret.enc; fi"]
+  opensandbox-server:
+    image: docker.io/opensandbox/server:release-1.1.1@sha256:bcd5f264101262cebfa7e1ff9cd0424403e42f31a6596e4364cf90d8cb5c936b
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    environment:
+      SANDBOX_CONFIG_PATH: /etc/opensandbox/config.toml
+      OPENSANDBOX_SERVER_API_KEY: ${SANDBOX_API_KEY:?Required}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./opensandbox.production.toml:/etc/opensandbox/config.toml:ro
+      - sandbox-state:/var/lib/opensandbox
+    networks: [default, executor]
+    # Management API is available only within Compose; no host port is published.
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/health',timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+    logging:
+      options:
+        max-size: 10m
+        max-file: '3'
+  sandbox-image:
+    image: ${SANDBOX_IMAGE:?Required}
+    build:
+      context: ..
+      dockerfile: sandbox/Dockerfile
+    profiles: [build]
+networks:
+  executor:
+    name: picoddy-cloud-executor
+volumes:
+  secrets:
+  sandbox-state:

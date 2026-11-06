@@ -1,0 +1,176 @@
+.plugin-section {
+  margin-bottom: 8px;
+}
+
+.plugin-section-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.plugin-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.plugin-search-box {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0 10px;
+  height: 34px;
+}
+
+.plugin-search-box:focus-within {
+  border-color: var(--accent);
+}
+
+.plugin-search-icon {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.plugin-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.plugin-search-clear {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.plugin-search-clear:hover {
+  color: var(--text);
+}
+
+.plugin-manual-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.plugin-manual-input {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0 10px;
+  height: 34px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  width: 200px;
+}
+
+.plugin-manual-input:focus {
+  border-color: var(--accent);
+}
+
+.plugin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--accent);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.plugin-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.plugin-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.plugin-btn.installing {
+  color: var(--text-tertiary);
+}
+
+.plugin-btn.installed {
+  color: var(--text-tertiary);
+  cursor: default;
+}
+
+.plugin-btn.uninstall {
+  color: var(--danger, #e5484d);
+}
+
+.plugin-btn.uninstall:hover {
+  background: var(--danger-soft, rgba(229, 72, 77, 0.1));
+  border-color: var(--danger, #e5484d);
+}
+
+.plugin-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plugin-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: plugin-rotate 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes plugin-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.plugin-card {
+  min-height: 120px;
+}
+
+.plugin-card.installed {
+  opacity: 0.85;
+}
+
+.plugin-pkg-name {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  word-break: break-all;
+}
+
+.plugin-version {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.plugin-empty {
+  padding: 24px 0;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}

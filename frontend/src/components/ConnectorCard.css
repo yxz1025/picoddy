@@ -1,0 +1,15 @@
+.connector-grid > .connector-card.connector-summary-card{height:144px;cursor:pointer}
+.connector-summary-card:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.connector-summary-status{margin-top:8px;color:var(--text-2);font-size:12px;line-height:18px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.connector-detail-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.2);backdrop-filter:blur(6px)}
+.connector-detail{position:relative;width:min(560px,100%);max-height:calc(100dvh - 48px);overflow:auto;box-sizing:border-box;padding:40px 28px 28px;border:1px solid var(--border);border-radius:24px;background:var(--bg);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.16)}
+.connector-detail-close{position:absolute;top:16px;right:16px;display:grid;place-items:center;border:0;background:transparent;color:var(--text-2);padding:4px;cursor:pointer}
+.connector-detail-icon{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 20px;border:1px solid var(--border);border-radius:16px}.connector-detail-icon img{width:48px;height:48px;object-fit:contain}.connector-detail-icon>svg{width:34px;height:34px}
+.connector-detail h2{text-align:center;font-size:21px;margin:0 0 16px}.connector-detail-description{text-align:center;font-size:14px;line-height:1.8;overflow-wrap:anywhere;margin:0 0 20px}
+.connector-detail-action{display:block;margin:0 auto 24px;border:0;border-radius:9px;padding:10px 28px;background:var(--text);color:var(--bg);font:inherit;cursor:pointer}.connector-detail button:disabled{opacity:.5;cursor:default}
+.connector-detail-content{font-size:13px;line-height:1.7;color:var(--text-2);overflow-wrap:anywhere}.connector-detail-content p{margin:8px 0}.connector-detail-content [role="alert"]{color:#c74343}
+.connector-detail-content button{padding:6px 12px;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--text);font:inherit;cursor:pointer}.connector-detail-content a{color:inherit;text-underline-offset:3px}
+.connector-detail-examples{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:28px}
+.connector-detail-examples h3{display:flex;gap:7px;align-items:center;margin:0;font-size:14px;line-height:1.5}
+.connector-detail-examples p{margin:0;min-width:0;box-sizing:border-box;padding:14px 16px;background:var(--bg-subtle);border-radius:12px;font-size:13px;line-height:1.6;color:var(--text-2);overflow-wrap:anywhere}
+@media(max-width:520px){.connector-detail-overlay{padding:12px}.connector-detail{padding:36px 20px 20px;max-height:calc(100dvh - 24px)}}

@@ -1,0 +1,123 @@
+appId: com.picoddy.app
+productName: PiCoddy
+copyright: PiCoddy
+electronVersion: 43.2.0
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/
+
+directories:
+  output: ../build/picoddy
+  buildResources: resources
+
+files:
+  - main.mjs
+  - application.electron.ts
+  - package.json
+  - src/**/*
+  - frontend/dist/**/*
+  - resources/**/*
+  - scripts/runtime/office-runtime.cjs
+  - scripts/testing/**/*
+  - scripts/preview/**/*
+  - node_modules/**/*
+  - "!node_modules/.cache/**"
+  - "!node_modules/.deno*/**"
+  - "!resources/runtimes/cache/**"
+  - "!resources/builtin-experts/**"
+  - "!**/*.md"
+  - "resources/prompts/v2/**/*.md"
+  - "node_modules/@earendil-works/pi-coding-agent/docs/codemode.md"
+  - "!resources/builtin-connectors/connector-catalog.json"
+  - "!resources/builtin-connectors/connector-runtime-lock.json"
+  - "!resources/builtin-connectors/*/**"
+  - "!**/.git"
+  - "!**/.env*"
+  - "!**/skillhub-auth.json"
+  - "!**/skillhub-secret.enc"
+
+asar: true
+beforePack: scripts/before-pack.cjs
+afterPack: scripts/runtime/after-pack.cjs
+extraResources:
+  - from: resources/builtin-experts
+    to: builtin-experts
+    filter:
+      - "**/*"
+      - "**/.picoddy-plugin/**"
+  - from: resources/builtin-connectors/connector-catalog.json
+    to: builtin-connectors/connector-catalog.json
+  - from: resources/builtin-connectors/connector-runtime-lock.json
+    to: builtin-connectors/connector-runtime-lock.json
+  - from: build/runtime-staging/python.dat
+    to: vendor/python.dat
+  - from: build/runtime-staging/runtime-manifest.json
+    to: vendor/runtime-manifest.json
+
+asarUnpack:
+  - "node_modules/npm/**/*"
+  - "node_modules/esbuild/**/*"
+  - "node_modules/@esbuild/**/*"
+  - "node_modules/onnxruntime-node/**/*"
+  - "node_modules/@napi-rs/**/*"
+  - "node_modules/@img/**/*"
+  - "node_modules/@koromix/**/*"
+  - "node_modules/koffi/**/*"
+  - "node_modules/sharp/**/*"
+  - "node_modules/iconv-corefoundation/**/*"
+  - "**/*.{node,dylib,so,dll}"
+
+mac:
+  extraResources:
+    - from: build/office-staging/darwin-${arch}
+      to: office-preview
+  identity: null
+  notarize: false
+  forceCodeSigning: false
+  category: public.app-category.productivity
+  icon: resources/app-icon.icns
+  target:
+    - dmg
+    - zip
+  hardenedRuntime: true
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  extendInfo:
+    LSEnvironment:
+      MallocNanoZone: "0"
+
+dmg:
+  title: PiCoddy
+  icon: resources/app-icon.icns
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+win:
+  extraResources:
+    - from: build/office-staging/win32-${arch}
+      to: office-preview
+  icon: resources/app-icon.ico
+  verifyUpdateCodeSignature: false
+  target:
+    - nsis
+
+nsis:
+  oneClick: true
+  perMachine: false
+  deleteAppDataOnUninstall: false
+
+msi:
+  oneClick: false
+  # 默认按当前用户安装，避免 Windows 11 上因 UAC/企业策略无法提升而停在安装界面。
+  perMachine: false
+
+linux:
+  icon: resources/app-icon.png
+  target:
+    - AppImage
+    - deb
+  category: Office

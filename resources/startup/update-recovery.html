@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'">
+<title>PiCoddy 更新恢复</title><style>
+body{font:16px system-ui,sans-serif;background:#f5f5f2;color:#222;margin:0;display:grid;place-items:center;min-height:100vh}main{max-width:640px;padding:40px}h1{font-size:28px}p{line-height:1.8;color:#555}button{border:1px solid #bbb;border-radius:8px;background:white;padding:12px 18px;margin:6px 8px 6px 0;cursor:pointer}#message{white-space:pre-wrap}
+</style></head><body><main><h1>更新后需要修复</h1><p>新版本未通过启动检查。你的会话、附件和工作区仍保存在本机。可以安装修复版本，或在确认后恢复升级前的数据库备份。</p>
+<button id="logs">打开更新记录与备份</button><button id="restore">恢复升级前数据库</button><button id="retry">重试启动</button>
+<p id="message" role="status">恢复备份会退回会话和设置；备份之后新增的数据库记录不会出现在恢复后的版本中。当前数据库会另存一份。</p>
+</main><script src="update-recovery.js"></script></body></html>

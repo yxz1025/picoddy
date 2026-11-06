@@ -1,0 +1,223 @@
+{
+  "formatVersion": 1,
+  "bundleDigest": "7dccdd8656216b1cd42d2d68d647470a1a8598e12faee8421b960c566c7a4f6f",
+  "skills": [
+    {
+      "name": "data-analysis",
+      "skillFile": "data-analysis/SKILL.md"
+    },
+    {
+      "name": "doc-qa",
+      "skillFile": "doc-qa/SKILL.md"
+    },
+    {
+      "name": "document-processing",
+      "skillFile": "document-processing/SKILL.md"
+    },
+    {
+      "name": "expert-manager",
+      "skillFile": "expert-manager/SKILL.md"
+    },
+    {
+      "name": "frontend-create",
+      "skillFile": "frontend-create/SKILL.md"
+    },
+    {
+      "name": "frontend-design",
+      "skillFile": "frontend-design/SKILL.md"
+    },
+    {
+      "name": "polish-writing",
+      "skillFile": "polish-writing/SKILL.md"
+    },
+    {
+      "name": "presentation",
+      "skillFile": "presentation/SKILL.md"
+    },
+    {
+      "name": "skill-creator",
+      "skillFile": "skill-creator/SKILL.md"
+    },
+    {
+      "name": "weekly-report",
+      "skillFile": "weekly-report/SKILL.md"
+    }
+  ],
+  "files": [
+    {
+      "path": "data-analysis/SKILL.md",
+      "size": 987,
+      "sha256": "5912c57711d1200c6a07016972cc3cbf32d61a77d7e09689127bd5edc770d6ea"
+    },
+    {
+      "path": "doc-qa/SKILL.md",
+      "size": 439,
+      "sha256": "eed55c9cc6480b414210ff21f492d6fba90d091a6e21a8a6077ece8995ade2dd"
+    },
+    {
+      "path": "document-processing/SKILL.md",
+      "size": 1515,
+      "sha256": "f210cfddbe2549252049bbdff4aa953f26b1416b2d31089926a9ec3b5f07127c"
+    },
+    {
+      "path": "expert-manager/.picoddy-plugin/plugin.json",
+      "size": 274,
+      "sha256": "bef3a206e9c7f63429a6369d2cda8b45d38a0e63ed373bc29cba59a2cfc03137"
+    },
+    {
+      "path": "expert-manager/LICENSE.txt",
+      "size": 10952,
+      "sha256": "721f0a648da3be2e52cfd4dbe4b7a965c60c63fe5be63c38c7bc46089e7535ae"
+    },
+    {
+      "path": "expert-manager/SKILL.md",
+      "size": 6435,
+      "sha256": "632e56bb6f2515c008d503a99e911ec96613e363cab5fbbd963e2f97b0402ca5"
+    },
+    {
+      "path": "expert-manager/references/agent-md-spec.md",
+      "size": 1122,
+      "sha256": "1abfb6be0aa23fc14ec34ce21eb57f9c8960080048c622f9985ce7d37681c179"
+    },
+    {
+      "path": "expert-manager/references/plugin-json-spec.md",
+      "size": 2787,
+      "sha256": "1e09a02e22a32f117a2deecad409bf6e169f71b0b39ca53585786b0f6d9ffc34"
+    },
+    {
+      "path": "expert-manager/scripts/init_expert.py",
+      "size": 6614,
+      "sha256": "4b7a82758a502fe5a0eb16b6238e9be0f5cc58a2dd32116fc174a8acde7902d9"
+    },
+    {
+      "path": "expert-manager/scripts/package_expert.py",
+      "size": 6990,
+      "sha256": "7a7227e0a0468cad89a9c35508a768d580723d8ce43d25a3bef1f33c5692b270"
+    },
+    {
+      "path": "expert-manager/scripts/project_paths.py",
+      "size": 1155,
+      "sha256": "40ffc98812b85339ccfbc0dbfefe60c161085789028841ff680d8c7e4aa113e0"
+    },
+    {
+      "path": "expert-manager/scripts/register_expert.py",
+      "size": 5754,
+      "sha256": "61035ec91baad816f76727b00ff2465969ae1f912c07faff992e6dc196147ec0"
+    },
+    {
+      "path": "expert-manager/scripts/test_init_expert.py",
+      "size": 1614,
+      "sha256": "0f1a62610211bc728b7603d2d716e30234c7a5e74100980cb3f2ecab5f048a13"
+    },
+    {
+      "path": "expert-manager/scripts/test_package_expert.py",
+      "size": 3343,
+      "sha256": "fdc7f0173e117abdba945be986a7551b50ee2b1b74cc6c38593c223a67f83293"
+    },
+    {
+      "path": "expert-manager/scripts/test_project_paths.py",
+      "size": 1037,
+      "sha256": "d440e688b2c26709a364e5efb4223d912e576dba12c792d4346295901c09e83a"
+    },
+    {
+      "path": "expert-manager/scripts/test_validate_expert_skills.py",
+      "size": 11055,
+      "sha256": "7537c97576dcd6b5e6650c7ca70e4fe7a56a5ff6ecb5bd798e66f52cdcdfa1fb"
+    },
+    {
+      "path": "expert-manager/scripts/validate_expert.py",
+      "size": 22533,
+      "sha256": "89af8c09bca9b19fab4d16376a5a61d8c382c85cdbf8120bd969f0413a2793f0"
+    },
+    {
+      "path": "frontend-create/LICENSE.txt",
+      "size": 10351,
+      "sha256": "eb3d7b5485466acbd81f2b496f595ab637d2792e268206b27d99e793bdb67549"
+    },
+    {
+      "path": "frontend-create/SKILL.md",
+      "size": 10528,
+      "sha256": "77ee92c7f0286247680c18a93cf1969fdb50f10e1e1ff0a3fc7cc37e1d985b96"
+    },
+    {
+      "path": "frontend-create/banner.html",
+      "size": 2965,
+      "sha256": "b12e2341eebfc20c907c0fbc033325fd6c7d982a80c7e365b739c6ef1e4726a9"
+    },
+    {
+      "path": "frontend-create/banner.png",
+      "size": 73190,
+      "sha256": "c6703adfb04c0975e8f358f21406993eeaf59682727d25d9a3a16b64aca2131a"
+    },
+    {
+      "path": "frontend-design/LICENSE.txt",
+      "size": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "path": "frontend-design/SKILL.md",
+      "size": 4511,
+      "sha256": "06c6fb23d47dc8caf37ee69a6432bd735f958efed4b5c8c45e6a82733f8713f3"
+    },
+    {
+      "path": "polish-writing/SKILL.md",
+      "size": 413,
+      "sha256": "af7a6db9619b8d2e2d371578ba7938f42f8ca1b0fb69942dc0fd71c1a84bf1b4"
+    },
+    {
+      "path": "presentation/SKILL.md",
+      "size": 430,
+      "sha256": "d89cfc96e32e6ad8bc4c6422f841dbb6406753316ba7accd0d22d67426352711"
+    },
+    {
+      "path": "skill-creator/SKILL.md",
+      "size": 22595,
+      "sha256": "b67bc121e5778f0751ca3df71949cf738ecc9e31d1bf1d46354b6bdb993d0734"
+    },
+    {
+      "path": "skill-creator/agents/openai.yaml",
+      "size": 188,
+      "sha256": "b750627cdd588fdbb5b46e854d3384d1a504fad3b8ed73ca5d7ead3804df78b6"
+    },
+    {
+      "path": "skill-creator/assets/skill-creator-small.svg",
+      "size": 1322,
+      "sha256": "edb19a0c59f9a1b5253b9af6d2f9f03cac27b2fe6a0275ebccbbdbff07891a1a"
+    },
+    {
+      "path": "skill-creator/assets/skill-creator.png",
+      "size": 1563,
+      "sha256": "a4024b0306ddb05847e1012879d37aaf1e658205199da596f5145ed7a88d9162"
+    },
+    {
+      "path": "skill-creator/license.txt",
+      "size": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "path": "skill-creator/references/openai_yaml.md",
+      "size": 2405,
+      "sha256": "7039d465b05342cbacf861f08d20192ab1eeee112bc5d8ff0fb66234756887a9"
+    },
+    {
+      "path": "skill-creator/scripts/generate_openai_yaml.py",
+      "size": 6845,
+      "sha256": "9ea002c57657e169b1bddcae227e55a5d87c43735da6d87cf682b3e216abb84b"
+    },
+    {
+      "path": "skill-creator/scripts/init_skill.py",
+      "size": 15002,
+      "sha256": "50281d4b53c73f6ffa1e98adf1ee9fcd55d4854970f24513e33da65f073f74be"
+    },
+    {
+      "path": "skill-creator/scripts/quick_validate.py",
+      "size": 3394,
+      "sha256": "5347a0a09cfb546bba1c0d1a30dae0a233d9a05f57bd4e7877155c588bcdabf7"
+    },
+    {
+      "path": "weekly-report/SKILL.md",
+      "size": 484,
+      "sha256": "d719e36da172418a2308e896e79a413113f0ef615b6d922eb69ee7eafa50b3bd"
+    }
+  ]
+}

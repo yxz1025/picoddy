@@ -1,0 +1,32 @@
+[server]
+host = "0.0.0.0"
+port = 8090
+max_sandbox_timeout_seconds = 900
+
+[proxy]
+# The lifecycle server runs on a Compose network while sandbox containers use
+# Docker's bridge network. Proxy through host-published ports on Docker Desktop.
+resolve_internal = false
+
+[log]
+level = "INFO"
+
+[runtime]
+type = "docker"
+execd_image = "docker.io/opensandbox/execd:release-1.1.1@sha256:cda2bc35409bbf57561599b316cafb899598f7dce671332e7ceda14eb1cfeded"
+
+[store]
+type = "sqlite"
+path = "/tmp/opensandbox.db"
+
+[docker]
+network_mode = "bridge"
+host_ip = "host.docker.internal"
+port_range_min = 40000
+port_range_max = 60000
+drop_capabilities = ["AUDIT_WRITE", "MKNOD", "NET_ADMIN", "NET_RAW", "SYS_ADMIN", "SYS_MODULE", "SYS_PTRACE", "SYS_TIME", "SYS_TTY_CONFIG"]
+no_new_privileges = true
+pids_limit = 4096
+
+[ingress]
+mode = "direct"

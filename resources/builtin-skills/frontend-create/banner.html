@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1600">
+<title>frontend-create — Pi Package Banner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+  :root {
+    --paper: #f4efe6;
+    --ink: #16161a;
+    --red: #d72638;
+    --muted: #8a8580;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1600px;
+    height: 900px;
+    overflow: hidden;
+    background: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 100px 80px 120px;
+  }
+
+  /* Red top bar */
+  .top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--red);
+  }
+
+  /* Corner mark top-left */
+  .corner-mark {
+    position: absolute;
+    top: 32px;
+    left: 120px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Main headline */
+  .headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: 264px;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+  }
+
+  .headline .em {
+    color: var(--red);
+  }
+
+  /* Subtitle */
+  .subtitle {
+    margin-top: 48px;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 700px;
+  }
+
+  .subtitle strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Pi badge bottom-left */
+  .badge {
+    position: absolute;
+    bottom: 80px;
+    left: 120px;
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Large watermark ƒ bottom-right */
+  .deco {
+    position: absolute;
+    bottom: -30px;
+    right: 40px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 420px;
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.035;
+    pointer-events: none;
+  }
+
+  /* Subtle bottom rule */
+  .bottom-rule {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ink);
+    opacity: 0.15;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<div class="corner-mark">frontend-create</div>
+
+<div class="headline">
+  frontend<span class="em">-create</span>
+</div>
+<div class="subtitle">
+  <strong>Reject the AI template.</strong> Produce frontend work with <strong>real craft</strong> — intentional, specific, designed.
+</div>
+
+<div class="badge">Pi Skill</div>
+<div class="deco">ƒ</div>
+<div class="bottom-rule"></div>
+
+</body>
+</html>

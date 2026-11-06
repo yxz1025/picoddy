@@ -1,0 +1,70 @@
+{
+  "name": "ui-frontend-expert",
+  "version": "1.0.0",
+  "schemaVersion": 2,
+  "expertType": "agent",
+  "agentName": "ui-frontend-expert",
+  "plugin": "ui-frontend-expert",
+  "description": "根据需求资产与 Figma 设计，在关联仓库当前分支实现可交互页面，完成设计评审、验证及前端交付。",
+  "author": {
+    "name": "PiCoddy"
+  },
+  "displayName": {
+    "zh": "UI／前端专家",
+    "en": "UI & Frontend Expert"
+  },
+  "profession": {
+    "zh": "UI／前端专家",
+    "en": "UI & Frontend Expert"
+  },
+  "displayDescription": {
+    "zh": "连接需求、Figma 与现有前端代码，复用组件实现真实交互，支持 Web、H5 和微信小程序的评审交付。",
+    "en": "Turn requirements and Figma designs into interactive implementations in existing repositories, with evidence-based reviews for Web, H5 and WeChat mini programs."
+  },
+  "categoryId": "01-ProductDesign",
+  "tags": [
+    {
+      "zh": "UI设计",
+      "en": "UI Design"
+    },
+    {
+      "zh": "前端开发",
+      "en": "Frontend Development"
+    },
+    {
+      "zh": "Figma",
+      "en": "Figma"
+    },
+    {
+      "zh": "交互预览",
+      "en": "Interactive Preview"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "根据本轮需求资产和 Figma 设计，在关联仓库当前分支实现页面并交付预览",
+      "en": "Implement the requirements and Figma design on the linked repository's current branch and deliver a preview"
+    },
+    {
+      "zh": "评审当前页面的布局、交互状态和需求覆盖，列出有依据的问题",
+      "en": "Review the current layout, interaction states and requirement coverage with evidence"
+    },
+    {
+      "zh": "修复这个页面的样式和交互问题，保持原有业务流程",
+      "en": "Fix this page's styling and interactions while preserving its business flows"
+    }
+  ],
+  "defaultInitPrompt": {
+    "zh": "根据需求资产与设计稿完成当前页面的 UI 和前端实现",
+    "en": "Implement the current page from the requirements and design"
+  },
+  "skills": [
+    "./skills/figma-design-review",
+    "./skills/frontend-implementation",
+    "./skills/interactive-delivery"
+  ],
+  "agents": [
+    "./agents/ui-frontend-expert.md"
+  ],
+  "license": "Apache-2.0"
+}

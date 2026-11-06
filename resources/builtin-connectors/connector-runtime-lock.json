@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "host": {
+    "source": "electron",
+    "package": "electron",
+    "version": "43.2.0",
+    "integrity": "sha512-80zvrgG7ZRXD+tD0IyLvrnN9n+veSxadMRsMaC9wKKP3iUbtC7rGM8+dVuCmOb0Rrwwv8ESW4awnUZh9Hbp1fA==",
+    "nodeVersion": "24.18.0"
+  },
+  "npm": {
+    "package": "npm",
+    "version": "11.7.0",
+    "integrity": "sha512-wiCZpv/41bIobCoJ31NStIWKfAxxYyD1iYnWCtiyns8s5v3+l8y0HCP/sScuH6B5+GhIfda4HQKiqeGZwJWhFw=="
+  }
+}

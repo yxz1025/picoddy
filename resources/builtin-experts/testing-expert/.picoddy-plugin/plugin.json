@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "name": "testing-expert",
+  "version": "1.2.0-local.1",
+  "description": "Design single-target or cross-target business scenarios from assets; after execution authorization, configure targets, prepare data, orchestrate local scripts, clean up and analyze evidence.",
+  "agents": [
+    "./agents/testing-expert.md"
+  ],
+  "expertType": "agent",
+  "agentName": "testing-expert",
+  "plugin": "testing-expert",
+  "displayName": {
+    "en": "Testing Expert",
+    "zh": "测试专家"
+  },
+  "profession": {
+    "en": "Test Engineer",
+    "zh": "测试专家"
+  },
+  "displayDescription": {
+    "en": "Design single-target or cross-target business scenarios from assets; after execution authorization, configure targets, prepare data, orchestrate local scripts, clean up and analyze evidence.",
+    "zh": "根据资产生成单端或跨端业务用例，获授权后补齐各端配置、准备数据、统一执行、清理并反馈结果；复杂任务按需分工生成脚本。"
+  },
+  "categoryId": "10-ProjectQuality",
+  "defaultInitPrompt": {
+    "zh": "请读取当前需求、PRD、原型、评审和研发设计，按随包 Excel 模板生成可导入 TAPD 的测试用例、覆盖矩阵和待确认问题，不执行测试。",
+    "en": "Read the requirement and prior product and engineering assets, then deliver TAPD-template test cases, a coverage matrix and unresolved questions without executing tests."
+  },
+  "skills": [
+    "./skills/test-case-design",
+    "./skills/tapd-excel-template",
+    "./skills/automation-test-execution"
+  ],
+  "tags": [
+    {
+      "en": "Test Case Design",
+      "zh": "测试用例"
+    },
+    {
+      "en": "Acceptance Coverage",
+      "zh": "验收覆盖"
+    },
+    {
+      "en": "TAPD Delivery",
+      "zh": "TAPD 交付"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "请读取当前需求、PRD、原型、评审和研发设计，按随包 Excel 模板生成可导入 TAPD 的测试用例、覆盖矩阵和待确认问题，不执行测试。",
+      "en": "Read the requirement and prior product and engineering assets, then deliver TAPD-template test cases, a coverage matrix and unresolved questions without executing tests."
+    },
+    {
+      "zh": "请根据所选资产与关联仓库生成或更新测试用例及自动化脚本，列出缺失配置，完成后询问我是否启动自动化测试；确认后检查并补齐配置再执行。",
+      "en": "Generate or update cases and automation scripts from selected assets and repositories, list missing configuration, then ask whether to start automation. After confirmation, fill missing configuration and execute."
+    },
+    {
+      "zh": "启动本轮业务流程自动化测试：请先确认单端或跨端范围，复用配置并补齐各端入口、角色和数据条件，再生成用例及脚本、准备数据、统一执行、清理并反馈结果。",
+      "en": "Start this business-flow test: establish single-target or cross-target scope, fill missing target and data configuration, generate cases and scripts, prepare data, orchestrate execution, clean up and report evidence."
+    }
+  ]
+}

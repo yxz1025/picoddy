@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "name": "code-review-ai",
+  "version": "1.0.0",
+  "description": "AI 驱动的架构审查和代码质量分析",
+  "author": {
+    "name": "Seth Hobson",
+    "url": "https://github.com/wshobson"
+  },
+  "repository": "https://github.com/wshobson/agents",
+  "license": "MIT",
+  "agents": ["./agents/code-review-ai.md"],
+  "skills": ["./skills/ai-review"],
+  "expertType": "agent",
+  "agentName": "code-review-ai",
+  "plugin": "code-review-ai",
+  "displayName": {
+    "en": "Code Review AI",
+    "zh": "代码审查专家"
+  },
+  "profession": {
+    "en": "Code Review Engineer",
+    "zh": "代码审查工程师"
+  },
+  "displayDescription": {
+    "en": "Reviews code changes for architecture, security, performance and maintainability, combining static analysis with AI to produce severity-ranked review comments with line references and fixes.",
+    "zh": "结合静态分析与 AI 对代码变更做架构、安全、性能与可维护性审查，输出带行号定位与修复建议的分级评审意见。"
+  },
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "en": "Review the current PR or code change for architecture, security, performance and maintainability issues, ranked by severity with concrete fixes.",
+    "zh": "请审查当前 PR 或代码变更，识别架构、安全、性能与可维护性问题，按严重程度分级给出具体修复建议。"
+  },
+  "tags": [
+    { "en": "Code Review", "zh": "代码审查" },
+    { "en": "Architecture Review", "zh": "架构评审" },
+    { "en": "Security Analysis", "zh": "安全分析" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Review the current PR or code change for architecture, security, performance and maintainability issues, ranked by severity with concrete fixes.",
+      "zh": "请审查当前 PR 或代码变更，识别架构、安全、性能与可维护性问题，按严重程度分级给出具体修复建议。"
+    },
+    {
+      "en": "Assess the architectural impact (High/Medium/Low) of this change and check compliance with layering, dependency direction and established architecture principles.",
+      "zh": "请评估本次改动的架构影响（高/中/低），检查分层与依赖方向是否符合既有架构原则。"
+    },
+    {
+      "en": "Security-review authentication and data-handling code against OWASP Top 10, secret leakage and access-control flaws.",
+      "zh": "请对认证与数据处理相关代码做安全审查，覆盖 OWASP Top 10、密钥泄露与访问控制缺陷。"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+.testing-execution { display: grid; gap: 12px; overflow-wrap: anywhere; }
+.testing-execution h3, .testing-execution p { margin: 0; }
+.testing-execution p, .testing-execution small { color: var(--text-secondary, #777); line-height: 1.6; }
+.testing-execution article, .testing-execution fieldset { border: 1px solid var(--border-color, #ddd); border-radius: 10px; padding: 12px; }
+.testing-execution label, .testing-execution small { display: block; margin: 6px 0; }
+.testing-execution input:not([type=checkbox]), .testing-execution select { width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid var(--border-color, #ddd); border-radius: 6px; background: var(--bg-primary, transparent); color: inherit; }
+.testing-execution button { padding: 7px 10px; border: 1px solid var(--border-color, #ddd); border-radius: 6px; background: var(--bg-primary, transparent); color: inherit; cursor: pointer; }
+.testing-execution button:disabled { opacity: .5; cursor: default; }
+.testing-execution [role=alert] { color: var(--text-danger, #c33); }
+.testing-execution summary { cursor: pointer; }

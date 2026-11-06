@@ -1,0 +1,43 @@
+{
+  "source": "~/Documents/experts",
+  "importedAt": "2026-10-30",
+  "adaptations": [
+    "membership-ops-expert: add schemaVersion 2 to copied plugin manifest; source files unchanged",
+    "ui-frontend-expert: rename bundled author branding to PiCoddy",
+    "product-management: rename bundled author branding to PiCoddy; original license notices preserved",
+    "testing-expert: remove obsolete private marketplace installation origin; bundled package is distributed locally",
+    "all bundled experts: rename package metadata directory to .picoddy-plugin; package contents and license notices preserved"
+  ],
+  "packages": [
+    {
+      "id": "code-review-ai",
+      "files": 5,
+      "sha256": "5afb63bac3fa3eaf335cd0ff2471d82ca893a389d4484895e0f0ff72d6d513b1"
+    },
+    {
+      "id": "membership-ops-expert",
+      "files": 28,
+      "sha256": "555da728e11eb38aaaeb77cf74eaba4c4e79b9b858e4e4294c8768546523b95d"
+    },
+    {
+      "id": "product-management",
+      "files": 27,
+      "sha256": "508fc27bb7269b2dce36bf60c8592742e79e7aede16fbc07d45928880cf7f2a0"
+    },
+    {
+      "id": "software-architect",
+      "files": 32,
+      "sha256": "2ab8879bf24ac8cbd8e2c5b599f26ae3348ea268a88548883fe59154a91b1ce9"
+    },
+    {
+      "id": "testing-expert",
+      "files": 83,
+      "sha256": "ac91d66cd1ec4b6502b2e70af403176b2a7c66fab5d2ce88a5094d4bb89a9076"
+    },
+    {
+      "id": "ui-frontend-expert",
+      "files": 9,
+      "sha256": "b8190a41ae17a94b617888c5c2812ffabcf2543fe1fcf0290f04782ffedcb319"
+    }
+  ]
+}
