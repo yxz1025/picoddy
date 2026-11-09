@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { cloudFileUrl } from "../../utils/cloudFile";
+
+const CodePreview = lazy(() => import('./CodePreview'));
 
 export default function CloudFilePreview({ path, name }: { path: string; name: string }) {
   const url = cloudFileUrl(path);
   const [content, setContent] = useState<{ blob?: string; text?: string; error?: string }>({});
   const extension = (path.split("/").pop() || name).split(".").pop()?.toLowerCase() ?? "";
   const image = ["png", "jpg", "jpeg", "gif", "webp", "avif", "svg"].includes(extension);
-  const text = ["txt", "md", "json", "yaml", "yml", "csv", "tsv", "html", "svg", "js", "ts", "py", "log"].includes(extension);
+  const text = ["txt", "md", "json", "yaml", "yml", "csv", "tsv", "html", "svg", "js", "jsx", "mjs", "cjs", "ts", "tsx", "py", "go", "rs", "java", "c", "h", "cpp", "cxx", "css", "scss", "sh", "bash", "xml", "toml", "ini", "sql", "log"].includes(extension);
   useEffect(() => {
     setContent({});
     if (!url || (!image && !text)) return;
@@ -48,7 +50,7 @@ export default function CloudFilePreview({ path, name }: { path: string; name: s
     <a className="settings-btn" href={url} download>下载 {name}</a>
     {content.error && <p role="alert">{content.error}</p>}
     {content.blob && <img src={content.blob} alt={name} style={{ maxWidth: "100%" }} />}
-    {content.text !== undefined && <pre style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{content.text}</pre>}
+    {content.text !== undefined && <div style={{ flex: 1, minHeight: 240 }}><Suspense fallback={<div className="preview-loading">正在加载代码预览...</div>}><CodePreview text={content.text} filePath={path} /></Suspense></div>}
     {!image && !text && <p>此格式的云端预览尚未接入，请下载查看。</p>}
   </div>;
 }

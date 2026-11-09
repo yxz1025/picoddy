@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const CodePreview = lazy(() => import('./CodePreview'));
 
 interface TextPreviewProps {
   filePath: string;
@@ -39,5 +41,7 @@ export default function TextPreview({ filePath }: TextPreviewProps) {
   if (state.loading) return <div className="preview-loading">加载中...</div>;
   if (state.error) return <div className="preview-error">预览失败: {state.error}</div>;
 
-  return <pre className="preview-plain-text">{state.text}</pre>;
+  return <Suspense fallback={<div className="preview-loading">正在加载代码预览...</div>}>
+    <CodePreview text={state.text ?? ''} filePath={filePath} />
+  </Suspense>;
 }
