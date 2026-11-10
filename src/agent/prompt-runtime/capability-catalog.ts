@@ -208,7 +208,7 @@ export const CAPABILITY_CATALOG = deepFreeze([
     ),
   ),
   dormant("browser-control", 480, "capabilities/browser-control.md"),
-  dormant("automation", 490, "capabilities/automation.md"),
+  active("automation", 490, "capabilities/automation.md", tools("automation_update")),
 ] as const satisfies readonly CapabilityDefinition[]);
 
 export const PROMPTLESS_TOOL_NAMES = deepFreeze([] as const);

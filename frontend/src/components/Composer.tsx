@@ -1981,6 +1981,12 @@ export default function Composer({ sendDisabled = false, processing = false, tes
     removeComposerConnector,
   } = useStore();
   const [text, setText] = useState("");
+  const workbenchDraft = useStore(s => s.workbenchDraft);
+  useEffect(() => {
+    if (!workbenchDraft || workbenchDraft.conversationId !== currentConvId || busy) return;
+    setText(previous => previous.trim() ? `${previous}\n\n${workbenchDraft.text}` : workbenchDraft.text);
+    useStore.setState({ workbenchDraft: null });
+  }, [workbenchDraft, currentConvId, busy]);
   useEffect(() => {
     const receive = (event: Event) => {
       const detail = (event as CustomEvent<{ conversationId: string; text: string }>).detail;

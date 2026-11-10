@@ -160,6 +160,7 @@ export interface PendingAsk {
 }
 
 interface AppState {
+  workbenchDraft: { conversationId: string; text: string } | null;
   // 侧边栏
   sidebarCollapsed: boolean;
   activeCategory: string;
@@ -644,6 +645,7 @@ export const useStore = create<AppState>((set, get) => ({
   sidebarCollapsed: false,
   activeCategory: "assistant",
   conversations: [],
+  workbenchDraft: null,
   currentConvId: null,
   searchQuery: "",
   workspaces: [],

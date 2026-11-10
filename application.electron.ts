@@ -1359,6 +1359,21 @@ async function handleApiInternal(req: Request, path: string): Promise<Response> 
       if (ok) pendingInteractiveEvents.delete(b.requestId);
       return json({ ok });
     }
+    if (path === "/api/workbench/browser" && req.method === "POST") {
+      const body = await req.json() as { path?: string };
+      if (typeof body.path !== "string") return jsonError("请选择 HTML 文件", 400);
+      const { browserPreviewUrl } = await import("./src/domains/workbench/node/browser.ts");
+      const error = await openExternalSafely(electronShell.openExternal.bind(electronShell), await browserPreviewUrl(body.path));
+      return error ? jsonError(error, 400) : json({ ok: true });
+    }
+    if (path === "/api/workbench" || path.startsWith("/api/workbench/")) {
+      const { workbenchRoute } = await import("./src/domains/workbench/node/routes.ts");
+      return workbenchRoute(req, path, getActiveAuthSession()!.userId, async (file) => {
+        const { browserPreviewUrl } = await import("./src/domains/workbench/node/browser.ts");
+        const error = await openExternalSafely(electronShell.openExternal.bind(electronShell), await browserPreviewUrl(file));
+        if (error) throw new Error(error);
+      });
+    }
     // GET /api/artifacts — 列出所有工件
     if (path === "/api/artifacts" && req.method === "GET") {
       return json(listArtifacts());

@@ -14,7 +14,7 @@ import {
   Puzzle,
   Link,
   LogOut,
-  // Monitor,
+  Monitor,
   Moon,
   MoreHorizontal,
   PanelLeft,
@@ -92,14 +92,13 @@ const FEATURE_TABS = [
     icon: CalendarSync,
     color: "--text",
   },
-  // 暂时注释，调整后开放
-  /* {
+  {
     id: "workbench",
     labelKey: "workbench",
-    labelFallback: "🖥️ 工作台",
+    labelFallback: "工作台",
     icon: Monitor,
     color: "--text",
-  }, */
+  },
 ];
 
 const STATUS_COLORS: Record<string, string> = {

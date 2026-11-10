@@ -1,3 +1,4 @@
+import PreviewActions from "./workbench/PreviewActions";
 import OfficePreview, { supportsOfficePreview } from "./previews/OfficePreview";
 import { FileText, FileSpreadsheet, Presentation, Image, Globe, FolderOpen, Files } from "lucide-react";
 import DocxPreview from "./previews/DocxPreview";
@@ -90,6 +91,7 @@ export default function PreviewPanel({ files, activeFile, onSelectFile }: Previe
         <div className="preview-document-toolbar">
           <span className="preview-file-name" title={fileName}>{fileName}</span>
           <span className="preview-format-label">{artifact.typeLabel}</span>
+          {activeFile.path && /\.html?$/i.test(activeFile.path) && <PreviewActions key={activeFile.path} path={activeFile.path} />}
           {activeFile.path && (
             <button
               className="preview-file-item-folder"

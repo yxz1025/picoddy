@@ -1,8 +1,50 @@
-/* WorkbenchView.css — 工作台容器（实际网页由主进程 WebContentsView 渲染） */
+.workbench-view{flex:1;min-width:0;height:100%;overflow:auto;padding:32px;background:var(--bg);color:var(--text)}
 
-.workbench-view {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  background: var(--bg);
+.wb-header,.wb-tools,.wb-card footer,.wb-dialog header,.wb-dialog footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wb-header{margin-bottom:28px}
+.wb-header h2{font-size:22px;margin:0 0 8px;font-weight:600}
+.wb-header p,.wb-hint{color:var(--text-3);font-size:13px;line-height:1.6;margin:0}
+.wb-tools{margin-bottom:20px}
+.wb-search{display:flex;align-items:center;gap:8px;color:var(--text-3);max-width:320px;flex:1}
+.wb-search input{width:100%;border:0;background:transparent;color:var(--text);outline:none;font:inherit;font-size:13px}
+.wb-search:focus-within{outline:2px solid var(--accent);outline-offset:5px;border-radius:4px}
+.wb-button,.wb-primary,.wb-icon{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text-2);padding:7px 10px;font:inherit;font-size:12px}
+.wb-primary{background:var(--accent);color:white;border-color:var(--accent)}
+.wb-icon{padding:7px;border-color:transparent}
+.wb-button:hover,.wb-icon:hover{background:var(--bg-hover)}
+.workbench-view button:disabled{opacity:.5;cursor:default}
+.wb-list-wrap{overflow:auto;border:1px solid var(--border);border-radius:9px;background:var(--bg)}
+.wb-list{width:100%;border-collapse:collapse;min-width:740px;text-align:left}
+.wb-list th{background:var(--bg-subtle);font-size:11px;color:var(--text-3);font-weight:500;padding:12px 16px;white-space:nowrap}
+.wb-list td{border-top:1px solid var(--border);padding:12px 16px;font-size:12px;vertical-align:middle}
+.wb-row-open{display:flex;align-items:center;gap:11px;max-width:430px;width:100%;padding:2px;border:0;background:none;color:var(--text);text-align:left;cursor:pointer}
+.wb-row-icon{display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:7px;background:var(--accent-soft);color:var(--accent)}
+.wb-row-open strong,.wb-row-open small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wb-row-open strong{font-size:13px;font-weight:550}
+.wb-row-open small{margin-top:4px;color:var(--text-3);font-size:11px;max-width:390px}
+.wb-file-state,.wb-task-state{font-size:11px;color:var(--text-2);white-space:nowrap}
+.wb-file-state.is-missing{color:var(--red,#dc2626)}
+.wb-task-state.is-enabled{color:var(--green,#16803c)}
+.wb-task-state.is-paused{color:var(--text-3)}
+.wb-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px;white-space:nowrap}
+.wb-row-actions .wb-button{border-color:transparent;padding:6px}
+.wb-row-actions .wb-icon{margin-left:2px}
+.wb-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;color:var(--text-3);text-align:center;gap:12px}
+.wb-empty h3{font-size:16px;color:var(--text-2);margin:0}
+.wb-empty p{font-size:13px;margin:0;line-height:1.7}
+.wb-error{color:var(--red,#dc2626);font-size:13px;overflow-wrap:anywhere}
+.wb-overlay{position:fixed;inset:0;background:#0005;display:flex;align-items:center;justify-content:center;z-index:1000;padding:24px}
+.wb-dialog{width:440px;max-width:100%;max-height:90vh;overflow:auto;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 16px 60px #0002}
+.wb-dialog h3{font-size:17px;margin:0}
+.wb-dialog label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-2);margin:20px 0}
+.wb-dialog input,.wb-dialog textarea,.wb-dialog select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:9px;font:inherit;width:100%;box-sizing:border-box}
+.wb-dialog textarea{resize:vertical;min-height:68px}
+.wb-dialog footer{margin-top:24px}
+.wb-path{display:block;font-size:11px;overflow-wrap:anywhere;background:var(--bg-subtle);padding:10px;margin:8px 0}
+.wb-danger{color:var(--red,#dc2626)}
+.wb-preview-actions{display:flex;gap:4px;align-items:center}
+.wb-preview-status{font-size:11px;color:var(--text-3);max-width:180px;overflow-wrap:anywhere}
+@media(max-width:700px){.workbench-view{padding:20px}
+.wb-header{align-items:flex-start}
+.wb-header p{max-width:220px}
 }

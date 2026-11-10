@@ -16,6 +16,7 @@ import {
   Moon,
   Newspaper,
   Pause,
+  Pencil,
   Phone,
   Play,
   Plus,
@@ -36,7 +37,7 @@ import {
   useAutomationStore,
 } from "../store/automationStore";
 import { useStore } from "../store/useStore";
-import { apiGet, apiPost } from "../api/client";
+import { apiGet, apiPost, apiPut } from "../api/client";
 import "./AutomationPanel.css";
 
 const TEMPLATES = [
@@ -209,6 +210,7 @@ export default function AutomationPanel() {
   } = useAutomationStore();
   const { workspaces, requestUiConfirm, showUiAlert } = useStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [editingAutomation, setEditingAutomation] = useState<Automation | null>(null);
   const [drawerPrefill, setDrawerPrefill] = useState<
     Partial<{ name: string; prompt: string; cron: string }>
   >({});
@@ -313,6 +315,7 @@ export default function AutomationPanel() {
   };
 
   const openDrawer = (prefill?: typeof drawerPrefill) => {
+    setEditingAutomation(null);
     setDrawerPrefill(prefill || {});
     setDrawerOpen(true);
   };
@@ -430,6 +433,7 @@ export default function AutomationPanel() {
                   onToggle={handleToggle}
                   onRun={handleRun}
                   onDelete={handleDelete}
+                  onEdit={(automation) => { setEditingAutomation(automation); setDrawerOpen(true); }}
                   onToggleRuns={toggleRuns}
                 />
               ))}
@@ -440,11 +444,13 @@ export default function AutomationPanel() {
 
       {drawerOpen && (
         <AutomationDrawer
+          automation={editingAutomation}
           prefill={drawerPrefill}
           workspaces={workspaces}
           onClose={() => setDrawerOpen(false)}
           onSaved={() => {
             setDrawerOpen(false);
+            setEditingAutomation(null);
             setShowTemplates(false);
             loadAutomations();
           }}
@@ -491,6 +497,7 @@ function AutoCard({
   onToggle,
   onRun,
   onDelete,
+  onEdit,
   onToggleRuns,
 }: {
   automation: Automation;
@@ -498,6 +505,7 @@ function AutoCard({
   onToggle: (id: string, enabled: boolean) => void;
   onRun: (id: string) => void;
   onDelete: (id: string, name: string) => void;
+  onEdit: (automation: Automation) => void;
   onToggleRuns: (id: string) => void;
 }) {
   const action = a.actionType === "skill"
@@ -549,6 +557,9 @@ function AutoCard({
           )}
         </div>
         <div className="auto-card-actions">
+          <button title="编辑任务" aria-label={`编辑 ${a.name}`} onClick={() => onEdit(a)}>
+            <Pencil size={15} />
+          </button>
           <button
             title={a.enabled ? "停用" : "启用"}
             onClick={() => onToggle(a.id, !a.enabled)}
@@ -615,6 +626,7 @@ function RunsList(
 }
 
 interface AutomationDrawerProps {
+  automation: Automation | null;
   prefill: Partial<{ name: string; prompt: string; cron: string }>;
   workspaces: { id: string; name: string }[];
   onClose: () => void;
@@ -622,34 +634,36 @@ interface AutomationDrawerProps {
 }
 
 function AutomationDrawer(
-  { prefill, workspaces, onClose, onSaved }: AutomationDrawerProps,
+  { automation, prefill, workspaces, onClose, onSaved }: AutomationDrawerProps,
 ) {
   const showUiAlert = useStore((state) => state.showUiAlert);
-  const [name, setName] = useState(prefill.name || "");
-  const [prompt, setPrompt] = useState(prefill.prompt || "");
+  const [name, setName] = useState(automation?.name || prefill.name || "");
+  const [prompt, setPrompt] = useState(automation?.prompt || prefill.prompt || automation?.actionConfig.prompt || "");
   const [workspaceId, setWorkspaceId] = useState("");
-  const [connector, setConnector] = useState("");
-  const [expertId, setExpertId] = useState("");
-  const [permission, setPermission] = useState<PermissionLevel>("default");
+  const [connector, setConnector] = useState(automation?.connector || "");
+  const [expertId, setExpertId] = useState(automation?.expertId || "");
+  const [permission, setPermission] = useState<PermissionLevel>(automation?.permission || "default");
   const [toolMode, setToolMode] = useState<
     "auto" | "skill" | "expert" | "permission"
-  >("auto");
+  >(automation?.actionType === "skill" ? "skill" : automation?.expertId ? "expert" : automation?.permission === "full" ? "permission" : "auto");
   const [scheduleType, setScheduleType] = useState<ScheduleType>(
-    prefill.cron ? "cron" : "cron",
+    automation?.scheduleType || "cron",
   );
-  const [cron, setCron] = useState(prefill.cron || "0 9 * * *");
-  const [interval, setInterval] = useState(30);
+  const [cron, setCron] = useState(automation?.triggerConfig.cron || prefill.cron || "0 9 * * *");
+  const [interval, setInterval] = useState(Math.max(5, automation?.triggerConfig.intervalMinutes || 30));
   const [intervalUnit, setIntervalUnit] = useState<"minutes" | "hours">(
     "minutes",
   );
-  const [onceAt, setOnceAt] = useState("");
-  const [validFrom, setValidFrom] = useState("");
-  const [validUntil, setValidUntil] = useState("");
-  const [pushToWxmp, setPushToWxmp] = useState(false);
+  const [onceAt, setOnceAt] = useState(automation?.triggerConfig.onceAt ? new Date(automation.triggerConfig.onceAt).toISOString().slice(0,16) : "");
+  const [validFrom, setValidFrom] = useState(automation?.validFrom ? new Date(automation.validFrom).toISOString().slice(0,10) : "");
+  const [validUntil, setValidUntil] = useState(automation?.validUntil ? new Date(automation.validUntil).toISOString().slice(0,10) : "");
+  const [pushToWxmp, setPushToWxmp] = useState(automation?.pushToWxmp || false);
   const [skills, setSkills] = useState<{ name: string }[]>([]);
   const [experts, setExperts] = useState<{ id: string; name: string }[]>([]);
   const [connectors, setConnectors] = useState<string[]>([]);
-  const [skill, setSkill] = useState("");
+  const [skill, setSkill] = useState(automation?.actionConfig.skill || "");
+
+  useEffect(() => { if (automation?.workspaceId) setWorkspaceId(automation.workspaceId); }, [automation]);
 
   useEffect(() => {
     apiGet<any>("/api/skills").then((s) => setSkills(s || [])).catch(() =>
@@ -731,7 +745,8 @@ function AutomationDrawer(
       pushToWxmp,
     };
 
-    await apiPost("/api/automations", payload);
+    if (automation) await apiPut(`/api/automations/${automation.id}`, payload);
+    else await apiPost("/api/automations", payload);
     onSaved();
   };
 
@@ -742,7 +757,7 @@ function AutomationDrawer(
     >
       <div className="auto-drawer">
         <div className="auto-drawer-head">
-          <div className="auto-drawer-title">添加自动化任务</div>
+          <div className="auto-drawer-title">{automation ? "编辑自动化任务" : "添加自动化任务"}</div>
           <button className="auto-drawer-close" onClick={onClose}>
             <X size={18} />
           </button>

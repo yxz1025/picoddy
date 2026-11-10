@@ -208,7 +208,7 @@ export default function App() {
           : activeCategory === "expert"
           ? <ExpertPanel key={expertPanelTab} />
           : activeCategory === "workbench"
-          ? <WorkbenchView />
+          ? <WorkbenchView key={authSessionView?.userId || ""} />
           : (
             <div
               className={`chat-layout ${

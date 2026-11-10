@@ -35,6 +35,7 @@ import {
   createReadOnlyTools,
 } from "../../vendor/pi_coding_agent.ts";
 import { memoryRecallTool, memoryWriteTool } from "./memory.ts";
+import { automationUpdateTool } from "./automation.ts";
 import {
   editDocxFreeTool,
   editDocxTool,
@@ -228,6 +229,7 @@ export function getFullTools(
       ...platformCodingTools,
       subagentTool,
       goalCompleteTool,
+      automationUpdateTool,
       memoryRecallTool,
       memoryWriteTool,
       readDocTool,
